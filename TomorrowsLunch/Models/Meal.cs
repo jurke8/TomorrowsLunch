@@ -11,6 +11,7 @@ namespace TomorrowsLunch.Models
         public Meal()
         {
             Id = Guid.NewGuid();
+            DateCreated = DateTime.Now;
             Ingredients = new HashSet<Ingredient>();
         }
     }
