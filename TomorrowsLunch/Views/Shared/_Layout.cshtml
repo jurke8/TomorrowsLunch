@@ -23,8 +23,12 @@
 
         <!-- Header -->
         <header id="header">
-            <h1><a href="Index">Tomorrows Lunch</a></h1>
-            <nav id="nav">
+            <h1>@Html.ActionLink("Tomorrows Lunch", "Index", "Home")</h1>
+                @if (ViewBag.ShowLogin)
+                {
+                            <h2 id="login">@Html.ActionLink("Prijavi se", "Login", "Home")</h2>
+                }
+            <nav id="nav" style="visibility:hidden">
                 <ul>
                     <li class="special">
                         <a href="#menu" class="menuToggle"><span>Menu</span></a>
@@ -35,7 +39,6 @@
                                 <li>@Html.ActionLink("Elements", "Elements", "Home")</li>
                                 <li><a href="#">Sign Up</a></li>
                                 <li><a href="#">Log In</a></li>
-
                             </ul>
                         </div>
                     </li>
@@ -46,12 +49,12 @@
         <!-- Footer -->
         <footer id="footer">
             @*<ul class="icons">
-                <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-                <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-                <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-                <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-                <li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
-            </ul>*@
+                    <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                    <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                    <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+                    <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+                    <li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+                </ul>*@
             <ul class="copyright">
                 <li>&copy;</li>
                 <li>Design: Ivan Juric</li>

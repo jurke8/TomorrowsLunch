@@ -39,6 +39,8 @@ namespace TommorowsLunch.Migrations
                 context.Ingredients.AddOrUpdate(i => i.Name, ingredient);
 
             });
+
+            //add users
             context.SaveChanges();
 
         }

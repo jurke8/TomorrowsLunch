@@ -1,0 +1,42 @@
+﻿<!-- Main -->
+<br />
+<article id="main">
+    <section class="wrapper style5">
+        <div class="inner">
+
+            <section>
+                <h4>Registracija</h4>
+                <form method="post" action="#">
+                    <div>
+                        <div class="6u 12u$(xsmall)">
+                            <input type="text" name="name" id="name" value="" placeholder="Ime" />
+                        </div>
+                        <br />
+                        <div class="6u 12u$(xsmall)">
+                            <input type="email" name="email" id="email" value="" placeholder="Email" />
+                        </div>
+                        <br />
+                        <div class="6u$ 12u$(xsmall)">
+                            <input type="password" name="pass" id="pass" value="" placeholder="Lozinka" />
+                        </div>
+                        <br />
+                        <div class="6u$ 12u$(xsmall)">
+                            <input type="password" name="confirmpass" id="confirmpass" value="" placeholder="Ponovi lozinku" />
+                        </div>
+                        <br />
+                        <div class="12u$">
+                            <ul class="actions">
+                                <li><input type="submit" value="Registriraj se" class="special" /></li>
+                            </ul>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </section>
+</article>
+<script>
+    $('[name="email"]').on('invalid', function (e) {
+        e.target.setCustomValidity("Neispravna email adresa");
+    });
+</script>

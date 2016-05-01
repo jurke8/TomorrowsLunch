@@ -21,17 +21,30 @@ namespace TomorrowsLunch.Controllers
             //    {
             //        ViewBag.Message += item.Name + " ";
             //    }
+            ViewBag.ShowLogin = true;
             return View();
         }
         public ActionResult Generic()
         {
+            ViewBag.ShowLogin = false;
             return View();
         }
 
         public ActionResult Elements()
         {
+            ViewBag.ShowLogin = false;
             return View();
         }
-        
+        public ActionResult Login()
+        {
+            ViewBag.ShowLogin = false;
+            return View();
+        }
+        public ActionResult Registration()
+        {
+            ViewBag.ShowLogin = true;
+            return View();
+        }
+
     }
 }

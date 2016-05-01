@@ -189,9 +189,11 @@
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Ingredient.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Models\Meal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\IngredientProvider.cs" />
+    <Compile Include="Providers\UserProvider.cs" />
     <Compile Include="Providers\MealProvider.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -213,6 +215,8 @@
     <Content Include="assets\sass\libs\_vars.scss" />
     <Content Include="assets\sass\main.scss" />
     <None Include="Properties\PublishProfiles\TomorrowsLunch.pubxml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Registration.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
