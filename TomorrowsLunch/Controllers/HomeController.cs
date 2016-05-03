@@ -45,5 +45,15 @@ namespace TomorrowsLunch.Controllers
             ViewBag.ShowLogin = false;
             return View();
         }
+        public ActionResult Login()
+        {
+            ViewBag.ShowLogin = false;
+            return View();
+        }
+        public ActionResult Registration()
+        {
+            ViewBag.ShowLogin = true;
+            return View();
+        }
     }
 }

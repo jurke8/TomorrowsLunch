@@ -30,16 +30,7 @@ namespace TomorrowsLunch.Controllers
 
             return response;
         }
-        //public ActionResult Login()
-        //{
-        //    ViewBag.ShowLogin = false;
-        //    return View();
-        //}
-        //public ActionResult Registration()
-        //{
-        //    ViewBag.ShowLogin = true;
-        //    return View();
-        //}
+       
 
     }
 }
