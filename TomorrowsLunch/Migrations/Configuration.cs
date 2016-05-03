@@ -4,6 +4,7 @@ namespace TommorowsLunch.Migrations
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using System.Data.Entity.Validation;
     using System.Linq;
     using TomorrowsLunch.DummyData;
     using TomorrowsLunch.Models;
@@ -18,31 +19,52 @@ namespace TommorowsLunch.Migrations
 
         protected override void Seed(TomorrowsLunch.Models.ApplicationDbContext context)
         {
-            var initialUserId = System.Guid.NewGuid();
-            var initialDate = System.DateTime.Now;
-
-            MealsDummy.Data.ForEach(meal =>
+            try
             {
-                meal.DateCreated = initialDate;
-                meal.CreatedByUser = initialUserId;
-                foreach (Ingredient ingredient in IngredientsDummy.Data)
+                var initialUserId = System.Guid.NewGuid();
+                var initialDate = System.DateTime.Now;
+
+                MealsDummy.Data.ForEach(meal =>
                 {
-                    meal.Ingredients.Add(ingredient);
-                }
-                context.Meals.AddOrUpdate(m => m.Name, meal);
-            });
+                    meal.DateCreated = initialDate;
+                    meal.CreatedByUser = initialUserId;
+                    foreach (Ingredient ingredient in IngredientsDummy.Data)
+                    {
+                        meal.Ingredients.Add(ingredient);
+                    }
+                    context.Meals.AddOrUpdate(m => m.Name, meal);
+                });
 
-            IngredientsDummy.Data.ForEach(ingredient =>
+                IngredientsDummy.Data.ForEach(ingredient =>
+                {
+                    ingredient.DateCreated = initialDate;
+                    ingredient.CreatedByUser = initialUserId;
+                    context.Ingredients.AddOrUpdate(i => i.Name, ingredient);
+
+                });
+
+                UsersDummy.Data.ForEach(user =>
+                {
+                    user.DateCreated = initialDate;
+                    context.Users.AddOrUpdate(i => i.Name, user);
+                });
+
+                context.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
             {
-                ingredient.DateCreated = initialDate;
-                ingredient.CreatedByUser = initialUserId;
-                context.Ingredients.AddOrUpdate(i => i.Name, ingredient);
-
-            });
-
-            //add users
-            context.SaveChanges();
-
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
         }
     }
 }

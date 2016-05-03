@@ -8,6 +8,8 @@ namespace TomorrowsLunch.Models
     public class Ingredient : BaseEntity
     {
         public virtual ICollection<Meal> Meals { get; set; }
+        public Guid CreatedByUser { get; set; }
+
         public Ingredient()
         {
             Id = Guid.NewGuid();

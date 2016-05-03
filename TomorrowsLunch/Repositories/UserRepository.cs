@@ -7,7 +7,7 @@ using System;
 
 namespace TommorowsLunch.Providers
 {
-    public class UserProvider
+    public class UserRepository : BaseRepository<User>
     {
         //    public List<User> GetAllUsers()
         //    {

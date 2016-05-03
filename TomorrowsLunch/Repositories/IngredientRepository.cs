@@ -5,7 +5,7 @@ using System.Web;
 
 namespace TommorowsLunch.Providers
 {
-    public class IngredientProvider
+    public class IngredientRepository
     {
     }
 }
