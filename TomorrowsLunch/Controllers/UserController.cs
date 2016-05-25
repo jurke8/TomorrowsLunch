@@ -7,6 +7,7 @@ using TommorowsLunch.Providers;
 using TomorrowsLunch.Models;
 using System.Web.Http;
 using System.Net.Http;
+using System.Net;
 
 namespace TomorrowsLunch.Controllers
 {
@@ -30,7 +31,11 @@ namespace TomorrowsLunch.Controllers
 
             return response;
         }
-       
-
+        public HttpResponseMessage Redirect()
+        {
+            var response = Request.CreateResponse(HttpStatusCode.Found, "pero");
+            response.Headers.Location = new Uri("http://www.google.com");
+            return response;
+        }
     }
 }

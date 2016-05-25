@@ -45,6 +45,11 @@ namespace TomorrowsLunch.Controllers
             ViewBag.ShowLogin = false;
             return View();
         }
+        public ActionResult Home()
+        {
+            ViewBag.ShowLogin = false;
+            return View();
+        }
         public ActionResult Login()
         {
             ViewBag.ShowLogin = false;

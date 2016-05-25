@@ -234,6 +234,7 @@
     <None Include="Properties\PublishProfiles\TomorrowsLunch.pubxml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Registration.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
