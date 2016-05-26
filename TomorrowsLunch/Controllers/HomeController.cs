@@ -45,11 +45,6 @@ namespace TomorrowsLunch.Controllers
             ViewBag.ShowLogin = false;
             return View();
         }
-        public ActionResult Home()
-        {
-            ViewBag.ShowLogin = false;
-            return View();
-        }
         public ActionResult Login()
         {
             ViewBag.ShowLogin = false;
@@ -58,6 +53,16 @@ namespace TomorrowsLunch.Controllers
         public ActionResult Registration()
         {
             ViewBag.ShowLogin = true;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Home(FormCollection frmc)
+        {
+            /// Extracting the value from FormCollection
+            string name = frmc["name"];
+            ViewBag.ShowLogin = false;
+            ViewBag.Name = name;
             return View();
         }
     }

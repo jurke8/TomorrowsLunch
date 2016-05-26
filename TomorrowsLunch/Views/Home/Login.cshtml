@@ -7,10 +7,11 @@
 
             <section>
                 <h4>Prijava</h4>
-                <form method="post" action="@Url.Action("Home", "Home")">
+                @using (Html.BeginForm("Home", "Home", FormMethod.Post))
+                {
                     <div>
                         <div class="6u 12u$(xsmall)">
-                            <input type="email" name="email" id="email" value="" placeholder="Email" />
+                            <input type="text" name="name" id="name" value="" placeholder="Ime" />
                         </div>
                         <br />
                         <div class="6u$ 12u$(xsmall)">
@@ -23,7 +24,7 @@
                             </ul>
                         </div>
                     </div>
-                </form>
+                }
             </section>
             <br />
             <br />
@@ -34,12 +35,7 @@
                         <li>@Html.ActionLink("Registriraj se", "Registration", new { controller = "Home" }, new { @class = "button small fit" })</li>
                     </ul>
                 </div>
-                </section>
+            </section>
         </div>
     </section>
 </article>
-<script>
-    $('[name="email"]').on('invalid', function (e) {
-        e.target.setCustomValidity("Neispravna email adresa");
-    });
-</script>
