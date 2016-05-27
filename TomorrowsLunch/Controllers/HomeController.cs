@@ -10,6 +10,7 @@ namespace TomorrowsLunch.Controllers
 {
     public class HomeController : Controller
     {
+        private static string name;
         // GET: Home
         public ActionResult Index()
         {
@@ -43,6 +44,7 @@ namespace TomorrowsLunch.Controllers
         public ActionResult Elements()
         {
             ViewBag.ShowLogin = false;
+            ViewBag.Name = name;
             return View();
         }
         public ActionResult Login()
@@ -59,8 +61,13 @@ namespace TomorrowsLunch.Controllers
         [HttpPost]
         public ActionResult Home(FormCollection frmc)
         {
-            /// Extracting the value from FormCollection
-            string name = frmc["name"];
+            name = frmc["name"];
+            ViewBag.ShowLogin = false;
+            ViewBag.Name = name;
+            return View();
+        }
+        public ActionResult Home()
+        {
             ViewBag.ShowLogin = false;
             ViewBag.Name = name;
             return View();

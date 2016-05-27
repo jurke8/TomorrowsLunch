@@ -20,13 +20,14 @@
 
     <!-- Page Wrapper -->
     <div id="page-wrapper">
+        
 
         <!-- Header -->
         <header id="header">
             <h1>@Html.ActionLink("Tomorrows Lunch", "Index", "Home")</h1>
                 @if (ViewBag.ShowLogin)
                 {
-                            <h2 id="login">@Html.ActionLink("Prijavi se", "Login", "Home")</h2>
+                            <h2 id="login" class="icon fa-sign-in" style="display:inline-flex">@Html.ActionLink("Prijavi se", "Login", "Home")</h2>
                 }
             <nav id="nav" style="visibility:hidden">
                 <ul>
@@ -34,10 +35,11 @@
                         <a id="menuText" href="#menu" class="menuToggle"><span>@ViewBag.Name</span></a>
                         <div id="menu">
                             <ul>
-                                <li>@Html.ActionLink("Home", "Home", "Home")</li>
-                                <li>@Html.ActionLink("Generic", "Generic", "Home")</li>
-                                <li>@Html.ActionLink("Elements", "Elements", "Home")</li>
-                                <li>@Html.ActionLink("Log out", "Index", "Home")</li>
+                                <li class="icon fa-calendar" style="display:flex">@Html.ActionLink("Kalendar", "Home", "Home")</li>
+                                <li class="icon fa-birthday-cake" style="display:flex">@Html.ActionLink("Jela", "Jela", "Home")</li>
+                                <li class="icon fa-lemon-o" style="display:flex">@Html.ActionLink("Sastojci", "Elements", "Home")</li>
+                                <li class="icon fa-sticky-note-o" style="display:flex">@Html.ActionLink("Recepti", "Elements", "Home")</li>
+                                <li class="icon fa-sign-out" style="display:inline-flex">@Html.ActionLink("Odjavi se", "Index", "Home")</li>
                             </ul>
                         </div>
                     </li>
