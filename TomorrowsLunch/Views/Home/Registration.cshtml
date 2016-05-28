@@ -6,7 +6,8 @@
 
             <section>
                 <h4>Registracija</h4>
-                <form method="post" action="#">
+                @using (Html.BeginForm("Home", "Home", FormMethod.Post, new { id = "registrationForm" }))
+                {
                     <div>
                         <div class="6u 12u$(xsmall)">
                             <input type="text" name="name" id="name" value="" placeholder="Ime" />
@@ -26,10 +27,11 @@
                         <br />
                         <div class="12u$">
                             <ul class="actions">
-                                <li><input type="submit" value="Registriraj se" class="special" /></li>
+                                <li><a href="javascript:document.forms['registrationForm'].submit()" class="button special icon fa-user-plus">Registriraj se</a></li>
                             </ul>
                         </div>
                     </div>
+                }
                 </form>
             </section>
         </div>
