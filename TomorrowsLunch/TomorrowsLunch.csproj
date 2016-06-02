@@ -236,6 +236,9 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Registration.cshtml" />
     <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\Home\Ingredients.cshtml" />
+    <Content Include="Views\Home\Meals.cshtml" />
+    <Content Include="Views\Home\Recipes.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

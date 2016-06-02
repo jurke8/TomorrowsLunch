@@ -5,7 +5,7 @@ using TomorrowsLunch.Models;
 using System;
 
 
-namespace TommorowsLunch.Providers
+namespace TomorrowsLunch.Repositories
 {
     public class UserRepository : BaseRepository<User>
     {

@@ -4,7 +4,7 @@ using System.Data.Entity;
 using TomorrowsLunch.Models;
 using System;
 
-namespace TommorowsLunch.Providers
+namespace TomorrowsLunch.Repositories
 {
     public class MealRepository : BaseRepository<Meal>
     {

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using TommorowsLunch.Providers;
 using TomorrowsLunch.Models;
 using System.Web.Http;
 using System.Net.Http;
 using System.Net;
+using TomorrowsLunch.Repositories;
 
 namespace TomorrowsLunch.Controllers
 {

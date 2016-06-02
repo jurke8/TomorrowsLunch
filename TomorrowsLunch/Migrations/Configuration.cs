@@ -1,4 +1,4 @@
-namespace TommorowsLunch.Migrations
+namespace TomorrowsLunch.Migrations
 {
     using System;
     using System.Collections.Generic;

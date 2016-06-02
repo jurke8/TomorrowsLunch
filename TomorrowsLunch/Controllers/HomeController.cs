@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using TommorowsLunch.Providers;
 using TomorrowsLunch.Models;
+using TomorrowsLunch.Repositories;
 
 namespace TomorrowsLunch.Controllers
 {
@@ -14,18 +14,18 @@ namespace TomorrowsLunch.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            var mr = new MealRepository();
-            var id = Guid.NewGuid();
-            var m = new Meal() { Name = "proba_update2", CreatedByUser = id };
-            mr.Create(m);
-            var myId = mr.GetAll().Where(y => y.CreatedByUser == id).Single().Id;
+            //var mr = new MealRepository();
+            //var id = Guid.NewGuid();
+            //var m = new Meal() { Name = "proba_update2", CreatedByUser = id };
+            //mr.Create(m);
+            //var myId = mr.GetAll().Where(y => y.CreatedByUser == id).Single().Id;
 
-            var myMeal = mr.GetSpecific(myId);
-            ((Meal)myMeal).Name = "proba_update3";
+            //var myMeal = mr.GetSpecific(myId);
+            //((Meal)myMeal).Name = "proba_update3";
 
-            mr.Update(myMeal);
+            //mr.Update(myMeal);
 
-            ViewBag.Message = ((Meal)myMeal).Name;
+            //ViewBag.Message = ((Meal)myMeal).Name;
 
             //foreach (var item in x)
             //{
@@ -67,6 +67,27 @@ namespace TomorrowsLunch.Controllers
             return View();
         }
         public ActionResult Home()
+        {
+            ViewBag.ShowLogin = false;
+            ViewBag.Name = name;
+            return View();
+        }
+        public ActionResult Meals()
+        {
+            ViewBag.ShowLogin = false;
+            ViewBag.Name = name;
+
+            var mr = new MealRepository();
+            var model = mr.GetAll();
+            return View(model   );
+        }
+        public ActionResult Ingredients()
+        {
+            ViewBag.ShowLogin = false;
+            ViewBag.Name = name;
+            return View();
+        }
+        public ActionResult Recipes()
         {
             ViewBag.ShowLogin = false;
             ViewBag.Name = name;
