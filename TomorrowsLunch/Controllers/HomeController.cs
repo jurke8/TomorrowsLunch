@@ -31,6 +31,7 @@ namespace TomorrowsLunch.Controllers
             //{
             //    ViewBag.Message += item.Name + " ";
             //}
+            ViewBag.ShowTitle = true;
 
             ViewBag.ShowLogin = true;
             return View();
@@ -38,23 +39,30 @@ namespace TomorrowsLunch.Controllers
         public ActionResult Generic()
         {
             ViewBag.ShowLogin = false;
+            ViewBag.ShowTitle = false;
+
             return View();
         }
 
         public ActionResult Elements()
         {
             ViewBag.ShowLogin = false;
+            ViewBag.ShowTitle = false;
+
             ViewBag.Name = name;
             return View();
         }
         public ActionResult Login()
         {
             ViewBag.ShowLogin = false;
+            ViewBag.ShowTitle = true;
             return View();
         }
         public ActionResult Registration()
         {
             ViewBag.ShowLogin = true;
+            ViewBag.ShowTitle = true;
+
             return View();
         }
 
@@ -63,33 +71,46 @@ namespace TomorrowsLunch.Controllers
         {
             name = frmc["name"];
             ViewBag.ShowLogin = false;
+            ViewBag.ShowTitle = false;
+
             ViewBag.Name = name;
             return View();
         }
         public ActionResult Home()
         {
             ViewBag.ShowLogin = false;
+            ViewBag.ShowTitle = false;
+
             ViewBag.Name = name;
             return View();
         }
         public ActionResult Meals()
         {
             ViewBag.ShowLogin = false;
+            ViewBag.ShowTitle = false;
+
             ViewBag.Name = name;
 
             var mr = new MealRepository();
             var model = mr.GetAll();
-            return View(model   );
+            return View(model);
         }
         public ActionResult Ingredients()
         {
             ViewBag.ShowLogin = false;
+            ViewBag.ShowTitle = false;
+
             ViewBag.Name = name;
-            return View();
+
+            var ir = new IngredientRepository();
+            var model = ir.GetAll();
+            return View(model);
         }
         public ActionResult Recipes()
         {
             ViewBag.ShowLogin = false;
+            ViewBag.ShowTitle = false;
+
             ViewBag.Name = name;
             return View();
         }

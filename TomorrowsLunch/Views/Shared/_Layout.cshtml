@@ -24,7 +24,10 @@
 
         <!-- Header -->
         <header id="header">
-            <h1>@Html.ActionLink("Tomorrows Lunch", "Index", "Home")</h1>
+            @if (ViewBag.ShowTitle)
+            {
+                <h1>@Html.ActionLink("Tomorrows Lunch", "Index", "Home")</h1>
+            }
                 @if (ViewBag.ShowLogin)
                 {
                             <h2 id="login" class="icon fa-sign-in" style="display:inline-flex">@Html.ActionLink("Prijavi se", "Login", "Home")</h2>

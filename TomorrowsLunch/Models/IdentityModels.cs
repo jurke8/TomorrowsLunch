@@ -29,7 +29,6 @@ namespace TomorrowsLunch.Models
                             cs.MapRightKey("IngredientRefId");
                             cs.ToTable("MealIngredient");
                         });
-
         }
         
     }
