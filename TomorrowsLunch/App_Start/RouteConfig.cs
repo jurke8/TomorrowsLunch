@@ -15,13 +15,13 @@ namespace TomorrowsLunch
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
+                url: "{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
                 name: "Elements",
-                url: "{controller}/{action}/{id}",
+                url: "{action}/{id}",
                 defaults: new { controller = "Home", action = "Elements", id = UrlParameter.Optional }
             );
 
@@ -30,23 +30,11 @@ namespace TomorrowsLunch
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Generic", id = UrlParameter.Optional }
             );
-
-
-            //add routes for login
-
             routes.MapRoute(
-                name: "Login",
+                name: "Meals",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "User", action = "Login", id = UrlParameter.Optional }
+                defaults: new { controller = "Meal", action = "Meals", id = UrlParameter.Optional }
             );
-
-            routes.MapRoute(
-                name: "Registration",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "User", action = "Registration", id = UrlParameter.Optional }
-            );
-
-
         }
     }
 }

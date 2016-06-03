@@ -11,6 +11,7 @@ namespace TomorrowsLunch.Controllers
     public class HomeController : Controller
     {
         private static string name;
+
         // GET: Home
         public ActionResult Index()
         {
@@ -92,6 +93,19 @@ namespace TomorrowsLunch.Controllers
             ViewBag.Name = name;
 
             var mr = new MealRepository();
+            var model = mr.GetAll();
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult Meals(FormCollection frmc)
+        {
+            ViewBag.ShowLogin = false;
+            ViewBag.ShowTitle = false;
+            ViewBag.Name = name;
+
+            var mealName = frmc["name"];
+            var mr = new MealRepository();
+            mr.Create(new Meal() { Name = mealName });
             var model = mr.GetAll();
             return View(model);
         }

@@ -1,23 +1,61 @@
 ﻿@model IEnumerable<TomorrowsLunch.Models.Meal>
-    <section class="wrapper style5">
-        <div class="inner">
-            <section>
-                <h4>Jela</h4>
-                <div class="row">
-                    <div class="6u 12u$(medium)">
-                        <ul class="alt" id="mealsList">
-                            @foreach (var item in Model)
-                            {
-                                <li>
-                                    @item.Name
-                                </li>
-                            }
+<section class="wrapper style5">
+    <div class="inner">
+        <section>
+            @using (Html.BeginForm("Meals", "Home", FormMethod.Post, new { id = "mealForm" }))
+            {
+                <div>
+                    <div class="6u 12u$(xsmall)">
+                        <input type="text" name="name" id="name" value="" placeholder="Naziv jela" />
+                    </div>
+                    <br />
+                    <div class="12u$">
+                        <ul class="actions">
+                            <li><a href="javascript:document.forms['mealForm'].submit()" onclick="return validateForm()" class="button special icon fa-sign-in">Dodaj jelo</a></li>
                         </ul>
                     </div>
                 </div>
-            </section>
-        </div>  
-    </section>
-    <script>
-        document.getElementById("nav").style.visibility = "inherit";
-    </script>
+            }
+        </section>
+        <section>
+            <h4>Jela</h4>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Naziv jela</th>
+                            <th>Datum kreiranja</th>
+                            <th>Opis</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.DateCreated</td>
+                                <td>opis</td>
+                                <td>
+                                        <a href="#" class="button small">Uredi</a>
+                                </td>
+                                <td>
+                                    <a href="#" class="button small">Obriši</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</section>
+<script>
+    document.getElementById("nav").style.visibility = "inherit";
+    function validateForm() {
+        var x = document.forms["mealForm"]["name"].value;
+        if (x == null || x == "") {
+            alert("Naziv jela mora se popuniti");
+            return false;
+        }
+    }
+</script>
