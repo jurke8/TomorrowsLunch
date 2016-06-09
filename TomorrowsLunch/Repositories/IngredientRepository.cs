@@ -9,7 +9,7 @@ using System;
 
 namespace TomorrowsLunch.Repositories
 {
-    public class IngredientRepository
+    public class IngredientRepository : BaseRepository<Ingredient>
     {
         public List<Ingredient> GetAll()
         {

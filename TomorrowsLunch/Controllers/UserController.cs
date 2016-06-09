@@ -11,31 +11,19 @@ using TomorrowsLunch.Repositories;
 
 namespace TomorrowsLunch.Controllers
 {
-    public class UserController : ApiController
+    public class UserController : Controller
     {
-        private UserRepository userRepository;
-
-        public UserController()
+        public ActionResult Login()
         {
-            this.userRepository = new UserRepository();
+            ViewBag.ShowLogin = false;
+            ViewBag.ShowTitle = true;
+            return View();
         }
-        public User Create()
+        public ActionResult Registration()
         {
-            return (User)userRepository.Create(new User());
-        }
-        public HttpResponseMessage Post(User user)
-        {
-            this.userRepository.Create(user);
-
-            var response = Request.CreateResponse<User>(System.Net.HttpStatusCode.Created, user);
-
-            return response;
-        }
-        public HttpResponseMessage Redirect()
-        {
-            var response = Request.CreateResponse(HttpStatusCode.Found, "pero");
-            response.Headers.Location = new Uri("http://www.google.com");
-            return response;
+            ViewBag.ShowLogin = true;
+            ViewBag.ShowTitle = true;
+            return View();
         }
     }
 }

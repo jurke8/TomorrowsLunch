@@ -177,6 +177,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\IngredientController.cs" />
     <Compile Include="Controllers\MealController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -218,12 +219,12 @@
     <Content Include="assets\sass\libs\_vars.scss" />
     <Content Include="assets\sass\main.scss" />
     <None Include="Properties\PublishProfiles\TomorrowsLunch.pubxml" />
-    <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Home\Registration.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\Registration.cshtml" />
     <Content Include="Views\Home\Home.cshtml" />
-    <Content Include="Views\Home\Ingredients.cshtml" />
-    <Content Include="Views\Home\Meals.cshtml" />
-    <Content Include="Views\Home\Recipes.cshtml" />
+    <Content Include="Views\Ingredient\Ingredients.cshtml" />
+    <Content Include="Views\Meal\Recipes.cshtml" />
+    <Content Include="Views\Meal\Meals.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

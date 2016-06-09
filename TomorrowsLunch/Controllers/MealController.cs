@@ -10,14 +10,12 @@ namespace TomorrowsLunch.Controllers
 {
     public class MealController : Controller
     {
-        private static string name;
 
-        // GET: Meal
         public ActionResult Meals()
         {
             ViewBag.ShowLogin = false;
             ViewBag.ShowTitle = false;
-
+            var name = HomeController.name;
             ViewBag.Name = name;
 
             var mr = new MealRepository();
@@ -25,17 +23,30 @@ namespace TomorrowsLunch.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult Meals(FormCollection frmc)
+        public ActionResult Create(FormCollection frmc)
         {
-            ViewBag.ShowLogin = false;
-            ViewBag.ShowTitle = false;
-            ViewBag.Name = name;
-
             var mealName = frmc["name"];
             var mr = new MealRepository();
             mr.Create(new Meal() { Name = mealName });
-            var model = mr.GetAll();
-            return View(model);
+            return RedirectToAction("Meals");
         }
+        public ActionResult Delete(Guid id)
+        {
+            var mr = new MealRepository();
+            var model = mr.GetAll();
+            var toDelete = model.Where(x => id.Equals(x.Id)).FirstOrDefault();
+            mr.Delete(toDelete);
+            return RedirectToAction("Meals");
+        }
+        public ActionResult Recipes()
+        {
+            ViewBag.ShowLogin = false;
+            ViewBag.ShowTitle = false;
+            var name = HomeController.name;
+            ViewBag.Name = name;
+            return View();
+        }
+
+
     }
 }

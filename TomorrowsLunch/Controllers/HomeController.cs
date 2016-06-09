@@ -10,7 +10,7 @@ namespace TomorrowsLunch.Controllers
 {
     public class HomeController : Controller
     {
-        private static string name;
+        public static string name;
 
         // GET: Home
         public ActionResult Index()
@@ -85,48 +85,7 @@ namespace TomorrowsLunch.Controllers
             ViewBag.Name = name;
             return View();
         }
-        public ActionResult Meals()
-        {
-            ViewBag.ShowLogin = false;
-            ViewBag.ShowTitle = false;
-
-            ViewBag.Name = name;
-
-            var mr = new MealRepository();
-            var model = mr.GetAll();
-            return View(model);
-        }
-        [HttpPost]
-        public ActionResult Meals(FormCollection frmc)
-        {
-            ViewBag.ShowLogin = false;
-            ViewBag.ShowTitle = false;
-            ViewBag.Name = name;
-
-            var mealName = frmc["name"];
-            var mr = new MealRepository();
-            mr.Create(new Meal() { Name = mealName });
-            var model = mr.GetAll();
-            return View(model);
-        }
-        public ActionResult Ingredients()
-        {
-            ViewBag.ShowLogin = false;
-            ViewBag.ShowTitle = false;
-
-            ViewBag.Name = name;
-
-            var ir = new IngredientRepository();
-            var model = ir.GetAll();
-            return View(model);
-        }
-        public ActionResult Recipes()
-        {
-            ViewBag.ShowLogin = false;
-            ViewBag.ShowTitle = false;
-
-            ViewBag.Name = name;
-            return View();
-        }
+        
+        
     }
 }

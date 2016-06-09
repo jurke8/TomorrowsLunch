@@ -1,8 +1,9 @@
 ﻿@model IEnumerable<TomorrowsLunch.Models.Meal>
 <section class="wrapper style5">
     <div class="inner">
+        <br />
         <section>
-            @using (Html.BeginForm("Meals", "Home", FormMethod.Post, new { id = "mealForm" }))
+            @using (Html.BeginForm("Create", "Meal", FormMethod.Post, new { id = "mealForm" }))
             {
                 <div>
                     <div class="6u 12u$(xsmall)">
@@ -11,7 +12,7 @@
                     <br />
                     <div class="12u$">
                         <ul class="actions">
-                            <li><a href="javascript:document.forms['mealForm'].submit()" onclick="return validateForm()" class="button special icon fa-sign-in">Dodaj jelo</a></li>
+                            <li><a href="javascript:document.forms['mealForm'].submit()" onclick="return validateForm()" class="button special icon fa-plus">Dodaj jelo</a></li>
                         </ul>
                     </div>
                 </div>
@@ -25,7 +26,7 @@
                         <tr>
                             <th>Naziv jela</th>
                             <th>Datum kreiranja</th>
-                            <th>Opis</th>
+                            <th>Sastojci</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,12 +35,12 @@
                             <tr>
                                 <td>@item.Name</td>
                                 <td>@item.DateCreated</td>
-                                <td>opis</td>
+                                <td>Sastojci</td>
                                 <td>
-                                        <a href="#" class="button small">Uredi</a>
+                                    <a href="#" class="button small icon fa-edit">Uredi</a>
                                 </td>
                                 <td>
-                                    <a href="#" class="button small">Obriši</a>
+                                    <a href="@Url.Action("Delete", "Meal", new { id=item.Id })" class="button small icon fa-remove">Obriši</a>
                                 </td>
                             </tr>
                         }

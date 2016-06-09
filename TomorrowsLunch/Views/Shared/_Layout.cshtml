@@ -30,7 +30,7 @@
             }
                 @if (ViewBag.ShowLogin)
                 {
-                            <h2 id="login" class="icon fa-sign-in" style="display:inline-flex">@Html.ActionLink("Prijavi se", "Login", "Home")</h2>
+                            <h2 id="login" class="icon fa-sign-in" style="display:inline-flex">@Html.ActionLink("Prijavi se", "Login", "User")</h2>
                 }
             <nav id="nav" style="visibility:hidden">
                 <ul>
@@ -39,9 +39,9 @@
                         <div id="menu">
                             <ul>
                                 <li class="icon fa-calendar" style="display:flex">@Html.ActionLink("Kalendar", "Home", "Home")</li>
-                                <li class="icon fa-birthday-cake" style="display:flex">@Html.ActionLink("Jela", "Meals", "Home")</li>
-                                <li class="icon fa-lemon-o" style="display:flex">@Html.ActionLink("Sastojci", "Ingredients", "Home")</li>
-                                <li class="icon fa-sticky-note-o" style="display:flex">@Html.ActionLink("Recepti", "Recipes", "Home")</li>
+                                <li class="icon fa-birthday-cake" style="display:flex">@Html.ActionLink("Jela", "Meals", "Meal")</li>
+                                <li class="icon fa-lemon-o" style="display:flex">@Html.ActionLink("Sastojci", "Ingredients", "Ingredient")</li>
+                                <li class="icon fa-sticky-note-o" style="display:flex">@Html.ActionLink("Recepti", "Recipes", "Meal")</li>
                                 <li class="icon fa-sign-out" style="display:inline-flex">@Html.ActionLink("Odjavi se", "Index", "Home")</li>
                             </ul>
                         </div>

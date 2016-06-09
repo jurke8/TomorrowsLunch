@@ -14,26 +14,40 @@ namespace TomorrowsLunch
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Default",
-                url: "{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
-
-            routes.MapRoute(
                 name: "Elements",
-                url: "{action}/{id}",
+                url: "Home/Elements/{id}",
                 defaults: new { controller = "Home", action = "Elements", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
                 name: "Generic",
-                url: "{controller}/{action}/{id}",
+                url: "Home/Generic/{id}",
                 defaults: new { controller = "Home", action = "Generic", id = UrlParameter.Optional }
             );
             routes.MapRoute(
+                name: "Login",
+                url: "Login/{id}",
+                defaults: new { controller = "User", action = "Login", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
+                name: "Registration",
+                url: "Registration/{id}",
+                defaults: new { controller = "User", action = "Registration", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
                 name: "Meals",
-                url: "{controller}/{action}/{id}",
+                url: "Meals/{action}/{id}",
                 defaults: new { controller = "Meal", action = "Meals", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
+                name: "Ingredients",
+                url: "Ingredients/{action}/{id}",
+                defaults: new { controller = "Ingredient", action = "Ingredients", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
+                name: "Default",
+                url: "{action}/{id}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
