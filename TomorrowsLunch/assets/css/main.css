@@ -2616,7 +2616,7 @@
 /* Wrapper */
 
 	.wrapper {
-		padding: 2em 0 3em 0 ;
+		padding: 6em 0 4em 0 ;
 	}
 
 		.wrapper > .inner {
@@ -3833,4 +3833,8 @@
 
 	body.is-mobile.landing #footer {
 		background-color: #1d242a;
+	}
+
+    .indexpadding {
+		padding: 3em 0 2em 0 !important;
 	}
