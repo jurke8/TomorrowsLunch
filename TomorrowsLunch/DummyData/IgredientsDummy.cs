@@ -17,7 +17,7 @@ namespace TomorrowsLunch.DummyData
             },
             new Ingredient {
                 Name="papar"
-            }            
+            }
         };
 
         public static List<Ingredient> Data

@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
 using TomorrowsLunch.Models;
-using System;
 
 
 namespace TomorrowsLunch.Repositories
@@ -17,7 +15,7 @@ namespace TomorrowsLunch.Repositories
             var ingredientsList = new List<Ingredient>();
             using (var db = new ApplicationDbContext())
             {
-                ingredients = db.Ingredients.Include(i => i.Meals).Where(i => !i.Deleted);
+                ingredients = db.Ingredients.Include(i => i.Meals).Where(i => !i.Deleted).OrderByDescending(x => x.DateCreated); ;
                 ingredientsList = ingredients.ToList();
             }
             return ingredientsList;

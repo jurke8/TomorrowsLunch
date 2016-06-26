@@ -5,9 +5,13 @@
         <section>
             @using (Html.BeginForm("Create", "Meal", FormMethod.Post, new { id = "mealForm" }))
             {
-                <div>
+                <div id="formDiv" style="display:none">
                     <div class="6u 12u$(xsmall)">
                         <input type="text" name="name" id="name" value="" placeholder="Naziv jela" />
+                        <br />
+                        <input type="text" name="2" id="2" value="" placeholder="bla jela" />
+                        <br />
+                        <input type="text" name="3" id="3" value="" placeholder="bla jela" />
                     </div>
                     <br />
                     <div class="12u$">
@@ -17,6 +21,11 @@
                     </div>
                 </div>
             }
+            <div class="12u$" id="buttonDiv">
+                <ul class="actions">
+                    <li><a onclick="return toggleForm()" class="button special icon fa-plus">Dodaj jelo</a></li>
+                </ul>
+            </div>
         </section>
         <section>
             <h4>Jela</h4>
@@ -52,11 +61,21 @@
 </section>
 <script>
     document.getElementById("nav").style.visibility = "inherit";
+
     function validateForm() {
         var x = document.forms["mealForm"]["name"].value;
+        var y = document.getElementById("buttonDiv");
         if (x == null || x == "") {
             alert("Naziv jela mora se popuniti");
             return false;
         }
+        x.style.display = "none";
+        y.style.display = "inherit";
     }
+    function toggleForm() {
+        var x = document.getElementById("formDiv");
+        var y = document.getElementById("buttonDiv");
+        x.style.display = "inherit";
+        y.style.display = "none";
+        }
 </script>

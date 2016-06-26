@@ -24,9 +24,19 @@ namespace TomorrowsLunch.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection frmc)
         {
-            var ingredientName = frmc["name"];
             var ir = new IngredientRepository();
-            ir.Create(new Ingredient() { Name = ingredientName });
+            int carbs, fat, proteins;
+            carbs = (Int32.TryParse(frmc["carbohydrates"], out carbs)) ? carbs : 0;
+            fat = (Int32.TryParse(frmc["fat"], out fat)) ? fat : 0;
+            proteins = (Int32.TryParse(frmc["proteins"], out proteins)) ? proteins : 0;
+
+            ir.Create(new Ingredient()
+            {
+                Name = frmc["name"],
+                Carbohydrates = carbs,
+                Fat = fat,
+                Proteins = proteins
+            });
             return RedirectToAction("Ingredients");
         }
         public ActionResult Delete(Guid id)
@@ -37,8 +47,5 @@ namespace TomorrowsLunch.Controllers
             ir.Delete(toDelete);
             return RedirectToAction("Ingredients");
         }
-        
-        
-        
     }
 }

@@ -2,22 +2,111 @@
 <section class="wrapper style5">
     <div class="inner">
         <section>
+            @using (Html.BeginForm("Create", "Ingredient", FormMethod.Post, new { id = "ingredientForm" }))
+            {
+                <div id="formDiv" style="display:none">
+                    <div class="6u 12u$(xsmall)">
+                        <input type="text" name="name" id="name" value="" placeholder="Naziv sastojka" required/>
+                        <br />
+                        <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="carbohydrates" id="carbohydrates" value="" placeholder="Ugljikodirati" />
+                        <br />
+                        <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="fat" id="fat" value="" placeholder="Masti" required />
+                        <br />
+                        <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="proteins" id="proteins" value="" placeholder="Proteini" />
+                    </div>
+                    <br />
+                    <div class="12u$">
+                        <ul class="actions">
+                            <li><a href="javascript:document.forms['ingredientForm'].submit()" onclick="return validateForm()" class="button special icon fa-plus">Dodaj sastojak</a></li>
+                            <li><a onclick="return toggleForm()" class="button special icon fa-arrow-left">Odustani</a></li>
+                        </ul>
+                    </div>
+                </div>
+            }
+            <div class="12u$" id="buttonDiv">
+                <ul class="actions">
+                    <li><a onclick="return toggleForm()" class="button special icon fa-plus">Dodaj sastojak</a></li>
+                </ul>
+            </div>
+        </section>
+        <section>
             <h4>Sastojci</h4>
-            <div class="row">
-                <div class="6u 12u$(medium)">
-                    <ul class="alt" id="mealsList">
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Naziv sastojka</th>
+                            <th>Ugljikohidrati</th>
+                            <th>Masti</th>
+                            <th>Proteini</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         @foreach (var item in Model)
                         {
-                            <li>
-                                @item.Name
-                            </li>
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.Carbohydrates</td>
+                                <td>@item.Fat</td>
+                                <td>@item.Proteins</td>
+                                <td>
+                                    <a href="#" class="button small icon fa-edit">Uredi</a>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Delete", "Ingredient", new { id=item.Id })" class="button small icon fa-remove">Obriši</a>
+                                </td>
+                            </tr>
                         }
-                    </ul>
-                </div>
+                    </tbody>
+                </table>
             </div>
+            @*<div class="row">
+                    <div class="6u 12u$(medium)">
+                        <ul class="alt" id="mealsList">
+                            @foreach (var item in Model)
+                            {
+                                <li>
+                                    @item.Name
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>*@
         </section>
     </div>
 </section>
 <script>
-        document.getElementById("nav").style.visibility = "inherit";
+    document.getElementById("nav").style.visibility = "inherit";
+
+    function validateForm() {
+        var x = document.forms["ingredientForm"]["name"].value;
+        if (x == null || x == "") {
+            alert("Naziv sastojka mora se popuniti");
+            return false;
+        }
+        var c = Number(document.getElementById("carbohydrates").value);
+        var f = Number(document.getElementById("fat").value);
+        var p = Number(document.getElementById("proteins").value);
+        var sum = c + f + p;
+        if ((sum) != 0 && (sum) != 100) {
+            alert("Ukupni udio mora biti 100 ili 0 posto");
+            return false;
+        }
+
+        var y = document.getElementById("buttonDiv");
+        x.style.display = "none";
+        y.style.display = "inherit";
+    }
+    function toggleForm() {
+        var x = document.getElementById("formDiv");
+        var y = document.getElementById("buttonDiv");
+        if (x.style.display == "none") {
+            x.style.display = "inherit";
+            y.style.display = "none";
+        }
+        else {
+            x.style.display = "none";
+            y.style.display = "inherit";
+        }
+    }
 </script>

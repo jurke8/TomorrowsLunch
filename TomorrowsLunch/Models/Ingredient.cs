@@ -9,10 +9,14 @@ namespace TomorrowsLunch.Models
     {
         public virtual ICollection<Meal> Meals { get; set; }
         public Guid CreatedByUser { get; set; }
+        public int Carbohydrates { get; set; }
+        public int Fat { get; set; }
+        public int Proteins { get; set; }
 
         public Ingredient()
         {
             Id = Guid.NewGuid();
+            DateCreated = DateTime.Now;
             Meals = new HashSet<Meal>();
         }
     }
