@@ -6,7 +6,7 @@
 
             <section>
                 <h4>Registracija</h4>
-                @using (Html.BeginForm("Home", "Home", FormMethod.Post, new { id = "registrationForm" }))
+                @using (Html.BeginForm("Registration", "User", FormMethod.Post, new { id = "registrationForm" }))
                 {
                     <div>
                         <div class="6u 12u$(xsmall)">
@@ -27,9 +27,10 @@
                         <br />
                         <div class="12u$">
                             <ul class="actions">
-                                <li><a href="javascript:document.forms['registrationForm'].submit()" class="button special icon fa-user-plus">Registriraj se</a></li>
+                                <li><a href="javascript:document.forms['registrationForm'].submit()" onclick="return validateForm()" class="button special icon fa-user-plus">Registriraj se</a></li>
                             </ul>
                         </div>
+                        <div style="color:red; font-weight:bold">@ViewBag.Message</div>
                     </div>
                 }
             </section>
@@ -40,4 +41,29 @@
     $('[name="email"]').on('invalid', function (e) {
         e.target.setCustomValidity("Neispravna email adresa");
     });
+
+    function validateForm() {
+        var x = document.forms["registrationForm"]["name"].value;
+        if (x == null || x == "") {
+            alert("Ime se mora popuniti");
+            return false;
+        }
+        var y = document.forms["registrationForm"]["email"].value;
+        if (y == null || y == "") {
+            alert("Email se mora popuniti");
+            return false;
+        }
+        var z = document.forms["registrationForm"]["pass"].value;
+        if (z == null || z == "") {
+            alert("Lozinka se mora popuniti");
+            return false;
+        }
+        var atpos = y.indexOf("@@");
+        var dotpos = y.lastIndexOf(".");
+        if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= y.length) {
+            alert("Neispravna email adresa");
+            return false;
+        }
+
+    }
 </script>

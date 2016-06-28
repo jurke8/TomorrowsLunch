@@ -4,10 +4,11 @@
 <article id="main">
     <section class="wrapper style5">
         <div class="inner">
-
+            <div style="color:green; font-weight:bold">@ViewBag.RegistrationMessage</div>
             <section>
                 <h4>Prijava</h4>
-                @using (Html.BeginForm("Home", "Home", FormMethod.Post, new { id="loginForm"}))
+
+                @using (Html.BeginForm("Login", "User", FormMethod.Post, new { id="loginForm"}))
                 {
                     <div>
                         <div class="6u 12u$(xsmall)">
@@ -21,9 +22,9 @@
                         <div class="12u$">
                             <ul class="actions">
                                 <li><a href="javascript:document.forms['loginForm'].submit()" class="button special icon fa-sign-in">Prijavi se</a></li>
-                                @*<li><input type="submit" value="Prijavi se" class="button special icon fa-sign-in" /></li>*@
                             </ul>
                         </div>
+                        <div style="color:red; font-weight:bold">@ViewBag.Message</div>
                     </div>
                 }
             </section>

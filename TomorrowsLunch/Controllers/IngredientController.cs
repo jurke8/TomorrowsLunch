@@ -14,7 +14,7 @@ namespace TomorrowsLunch.Controllers
         {
             ViewBag.ShowLogin = false;
             ViewBag.ShowTitle = false;
-            var name = HomeController.name;
+            var name = UserController.name;
             ViewBag.Name = name;
 
             var ir = new IngredientRepository();

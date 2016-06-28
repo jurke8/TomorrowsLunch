@@ -9,57 +9,39 @@ namespace TomorrowsLunch.Repositories
 {
     public class UserRepository : BaseRepository<User>
     {
-        //    public List<User> GetAllUsers()
-        //    {
-        //        IQueryable<User> users;
-        //        var mealsList = new List<Meal>();
-        //        using (var db = new ApplicationDbContext())
-        //        {
-        //            users = db.
-        //        }
-        //        return mealsList;
-        //    }
-        //    public User GetSpecificMeal(Guid specificMealId)
-        //    {
-        //        Meal returnValue;
-        //        IQueryable<User> meal;
-        //        using (var db = new ApplicationDbContext())
-        //        {
-        //            //include
-        //            meal = db.Meals.Include(p => p.Ingredients).Where(m => m.Id == specificMealId);
-        //            returnValue = meal.FirstOrDefault();
-        //        }
-        //        return returnValue;
-        //    }
-        //    public User UpdateMeal(User updatedMeal)
-        //    {
-        //        using (var db = new ApplicationDbContext())
-        //        {
-        //            //db.Meals.Attach(newMeal);
-        //            db.Entry(updatedMeal).State = EntityState.Modified;
-        //            db.SaveChanges();
-        //        }
-        //        return updatedMeal;
-        //    }
-        //    public User CreateMeal(User newMeal)
-        //    {
-        //        using (var db = new ApplicationDbContext())
-        //        {
-        //            db.Meals.Add(newMeal);
-        //            db.SaveChanges();
-        //        }
-        //        return newMeal;
-        //    }
-        //    public Meal DeleteMeal(User meal)
-        //    {
-        //        meal.Deleted = true;
-        //        return UpdateMeal(meal);
-        //    }
-        //}
-        //public class DataModel
-        //{
-        //    public int Id { get; set; }
-        //    public string Name { get; set; }
-        //}
+        public List<User> GetAll()
+        {
+            var usersList = new List<User>();
+            using (var db = new ApplicationDbContext())
+            {
+                usersList = db.Users.ToList();
+            }
+            return usersList;
+        }
+        public User GetSpecificById(Guid specificUserId)
+        {
+            IQueryable<User> user;
+            using (var db = new ApplicationDbContext())
+            {
+                user = db.Users.Where(u => u.Id == specificUserId);
+            }
+            return user.FirstOrDefault();
+        }
+        public User GetSpecificByName(string specificUserName)
+        {
+            User user;
+            using (var db = new ApplicationDbContext())
+            {
+                user = db.Users.Where(u => specificUserName.Equals(u.Name)).FirstOrDefault();
+            }
+            return user;
+        }
+        public bool UserNameExist(string name)
+        {
+            var users = GetAll();
+            var names = new List<string>();
+            users.ForEach(u => names.Add(u.Name));
+            return (names.Contains(name)) ? true : false;
+        }
     }
 }
