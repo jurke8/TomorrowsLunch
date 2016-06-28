@@ -49,7 +49,7 @@ namespace TomorrowsLunch.Controllers
             ViewBag.ShowLogin = false;
             ViewBag.ShowTitle = false;
 
-            ViewBag.Name = UserController.name;
+            ViewBag.Name = UserController.currentUser.Name;
             return View();
         }
 
@@ -59,7 +59,7 @@ namespace TomorrowsLunch.Controllers
             ViewBag.ShowTitle = false;
 
             ViewBag.Message = message;
-            ViewBag.Name = UserController.name;
+            ViewBag.Name = UserController.currentUser.Name;
 
             return View();
         }

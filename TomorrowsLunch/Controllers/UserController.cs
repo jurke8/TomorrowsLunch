@@ -6,13 +6,14 @@ using System.Web.Mvc;
 using TomorrowsLunch.Models;
 using System.Net;
 using TomorrowsLunch.Repositories;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace TomorrowsLunch.Controllers
 {
     public class UserController : Controller
     {
-        public static string name;
-
+        public static User currentUser;
         public ActionResult Registration(string message)
         {
             ViewBag.ShowLogin = true;
@@ -43,7 +44,10 @@ namespace TomorrowsLunch.Controllers
                 }
                 else
                 {
-                    var newUser = ur.Create(new User() { Name = userName, Email = frmc["email"], Password = frmc["pass"] });
+                    var data = Encoding.ASCII.GetBytes(frmc["pass"]);
+                    var sha1 = new SHA1CryptoServiceProvider();
+                    var hashedPasssword = sha1.ComputeHash(data);
+                    var newUser = ur.Create(new User() { Name = userName, Email = frmc["email"], Password = hashedPasssword });
                     ViewBag.ShowLogin = false;
                     ViewBag.ShowTitle = false;
                     return RedirectToAction("Login", new { message = "Uspješno ste registrirani!!!" });
@@ -76,16 +80,19 @@ namespace TomorrowsLunch.Controllers
             else
             {
                 var user = ur.GetSpecificByName(userName);
-                if (user.Password.Equals(frmc["pass"]))
+                var data = Encoding.ASCII.GetBytes(frmc["pass"]);
+                var sha1 = new SHA1CryptoServiceProvider();
+                var hashedPasssword = sha1.ComputeHash(data);
+                if (hashedPasssword.SequenceEqual(user.Password))
                 {
-                    name = user.Name;
+                    currentUser = user;
                     ViewBag.ShowLogin = false;
                     ViewBag.ShowTitle = false;
                     return RedirectToAction("Home", "Home", new { message = "Uspješno ste prijavljeni" });
                 }
                 else
                 {
-                    return View(new { message = "Kriva lozinka!!!" });
+                    return RedirectToAction("Login", "User", new { message = "Kriva lozinka!!!" });
                 }
             }
         }

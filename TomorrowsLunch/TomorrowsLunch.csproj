@@ -187,9 +187,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201606192259508_Ingredients_updated.cs" />
-    <Compile Include="Migrations\201606192259508_Ingredients_updated.Designer.cs">
-      <DependentUpon>201606192259508_Ingredients_updated.cs</DependentUpon>
+    <Compile Include="Migrations\201606281256230_Initial.cs" />
+    <Compile Include="Migrations\201606281256230_Initial.Designer.cs">
+      <DependentUpon>201606281256230_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -242,8 +242,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201606192259508_Ingredients_updated.resx">
-      <DependentUpon>201606192259508_Ingredients_updated.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606281256230_Initial.resx">
+      <DependentUpon>201606281256230_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

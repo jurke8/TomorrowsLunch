@@ -43,12 +43,6 @@ namespace TomorrowsLunch.Migrations
 
                 });
 
-                UsersDummy.Data.ForEach(user =>
-                {
-                    user.DateCreated = initialDate;
-                    context.Users.AddOrUpdate(i => i.Name, user);
-                });
-
                 context.SaveChanges();
             }
             catch (DbEntityValidationException e)

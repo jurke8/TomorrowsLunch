@@ -14,11 +14,11 @@ namespace TomorrowsLunch.Controllers
         {
             ViewBag.ShowLogin = false;
             ViewBag.ShowTitle = false;
-            var name = UserController.name;
-            ViewBag.Name = name;
+            ViewBag.Name = UserController.currentUser.Name;
+
 
             var ir = new IngredientRepository();
-            var model = ir.GetAll();
+            var model = ir.GetAll(UserController.currentUser.Id);
             return View(model);
         }
         [HttpPost]
@@ -35,14 +35,15 @@ namespace TomorrowsLunch.Controllers
                 Name = frmc["name"],
                 Carbohydrates = carbs,
                 Fat = fat,
-                Proteins = proteins
+                Proteins = proteins,
+                CreatedByUser = UserController.currentUser.Id
             });
             return RedirectToAction("Ingredients");
         }
         public ActionResult Delete(Guid id)
         {
             var ir = new IngredientRepository();
-            var model = ir.GetAll();
+            var model = ir.GetAll(UserController.currentUser.Id);
             var toDelete = model.Where(x => id.Equals(x.Id)).FirstOrDefault();
             ir.Delete(toDelete);
             return RedirectToAction("Ingredients");

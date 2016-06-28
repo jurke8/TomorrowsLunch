@@ -41,3 +41,21 @@
         </div>
     </section>
 </article>
+<script>
+    $('[name="email"]').on('invalid', function (e) {
+        e.target.setCustomValidity("Neispravna email adresa");
+    });
+
+    function validateForm() {
+        var x = document.forms["loginForm"]["name"].value;
+        if (x == null || x == "") {
+            alert("Ime se mora popuniti");
+            return false;
+        }
+        var z = document.forms["loginForm"]["pass"].value;
+        if (z == null || z == "") {
+            alert("Lozinka se mora popuniti");
+            return false;
+        }
+    }
+</script>

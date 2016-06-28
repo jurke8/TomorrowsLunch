@@ -9,13 +9,13 @@ namespace TomorrowsLunch.Repositories
 {
     public class IngredientRepository : BaseRepository<Ingredient>
     {
-        public List<Ingredient> GetAll()
+        public List<Ingredient> GetAll(Guid currentUser)
         {
             IQueryable<Ingredient> ingredients;
             var ingredientsList = new List<Ingredient>();
             using (var db = new ApplicationDbContext())
             {
-                ingredients = db.Ingredients.Include(i => i.Meals).Where(i => !i.Deleted).OrderByDescending(x => x.DateCreated); ;
+                ingredients = db.Ingredients.Include(i => i.Meals).Where(i => !i.Deleted).Where(i => i.CreatedByUser == currentUser).OrderByDescending(x => x.DateCreated);
                 ingredientsList = ingredients.ToList();
             }
             return ingredientsList;

@@ -15,11 +15,9 @@ namespace TomorrowsLunch.Controllers
         {
             ViewBag.ShowLogin = false;
             ViewBag.ShowTitle = false;
-            var name = UserController.name;
-            ViewBag.Name = name;
-
+            ViewBag.Name = UserController.currentUser.Name;
             var mr = new MealRepository();
-            var model = mr.GetAll();
+            var model = mr.GetAll(UserController.currentUser.Id);
             return View(model);
         }
         [HttpPost]
@@ -27,13 +25,17 @@ namespace TomorrowsLunch.Controllers
         {
             var mealName = frmc["name"];
             var mr = new MealRepository();
-            mr.Create(new Meal() { Name = mealName });
+            mr.Create(new Meal()
+            {
+                Name = mealName,
+                CreatedByUser = UserController.currentUser.Id
+            });
             return RedirectToAction("Meals");
         }
         public ActionResult Delete(Guid id)
         {
             var mr = new MealRepository();
-            var model = mr.GetAll();
+            var model = mr.GetAll(UserController.currentUser.Id);
             var toDelete = model.Where(x => id.Equals(x.Id)).FirstOrDefault();
             mr.Delete(toDelete);
             return RedirectToAction("Meals");
@@ -42,8 +44,8 @@ namespace TomorrowsLunch.Controllers
         {
             ViewBag.ShowLogin = false;
             ViewBag.ShowTitle = false;
-            var name = UserController.name;
-            ViewBag.Name = name;
+            ViewBag.Name = UserController.currentUser.Name;
+
             return View();
         }
 

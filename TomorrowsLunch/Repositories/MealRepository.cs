@@ -8,13 +8,13 @@ namespace TomorrowsLunch.Repositories
 {
     public class MealRepository : BaseRepository<Meal>
     {
-        public List<Meal> GetAll()
+        public List<Meal> GetAll(Guid currentUser)
         {
             IQueryable<Meal> meals;
             var mealsList = new List<Meal>();
             using (var db = new ApplicationDbContext())
             {
-                meals = db.Meals.Include(m => m.Ingredients).Where(m => !m.Deleted).OrderByDescending(x=> x.DateCreated);
+                meals = db.Meals.Include(m => m.Ingredients).Where(m => !m.Deleted).Where(m => m.CreatedByUser == currentUser).OrderByDescending(x=> x.DateCreated);
                 mealsList = meals.ToList();
             }
             return mealsList;
