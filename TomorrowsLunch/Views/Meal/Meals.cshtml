@@ -17,7 +17,8 @@
                     <div class="12u$">
                         <ul class="actions">
                             <li><a href="javascript:document.forms['mealForm'].submit()" onclick="return validateForm()" class="button special icon fa-plus">Dodaj jelo</a></li>
-                        </ul>
+                            <li><a onclick="return toggleForm()" class="button special icon fa-arrow-left">Odustani</a></li>
+                         </ul>
                     </div>
                 </div>
             }
@@ -75,7 +76,13 @@
     function toggleForm() {
         var x = document.getElementById("formDiv");
         var y = document.getElementById("buttonDiv");
-        x.style.display = "inherit";
-        y.style.display = "none";
+        if (x.style.display == "none") {
+            x.style.display = "inherit";
+            y.style.display = "none";
         }
+        else {
+            x.style.display = "none";
+            y.style.display = "inherit";
+        }
+    }
 </script>

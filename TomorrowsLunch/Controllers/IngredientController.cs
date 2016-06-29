@@ -40,6 +40,26 @@ namespace TomorrowsLunch.Controllers
             });
             return RedirectToAction("Ingredients");
         }
+        [HttpPost]
+        public ActionResult Edit(FormCollection frmc)
+        {
+            var ir = new IngredientRepository();
+            int carbs, fat, proteins;
+            Guid id;
+            carbs = (Int32.TryParse(frmc["carbohydrates"], out carbs)) ? carbs : 0;
+            fat = (Int32.TryParse(frmc["fat"], out fat)) ? fat : 0;
+            proteins = (Int32.TryParse(frmc["proteins"], out proteins)) ? proteins : 0;
+            id = new Guid(frmc["id"]);
+
+            var ingredientModel = ir.GetSpecific(id);
+            ingredientModel.Name = frmc["name"];
+            ingredientModel.Carbohydrates = carbs;
+            ingredientModel.Fat = fat;
+            ingredientModel.Proteins = proteins;
+
+            ir.Update(ingredientModel);
+            return RedirectToAction("Ingredients");
+        }
         public ActionResult Delete(Guid id)
         {
             var ir = new IngredientRepository();

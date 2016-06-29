@@ -20,5 +20,17 @@ namespace TomorrowsLunch.Repositories
             }
             return ingredientsList;
         }
+        public Ingredient GetSpecific(Guid specificIngredientId)
+        {
+            Ingredient returnValue;
+            IQueryable<Ingredient> ingredient;
+            using (var db = new ApplicationDbContext())
+            {
+                //include
+                ingredient = db.Ingredients.Include(i => i.Meals).Where(i => i.Id == specificIngredientId);
+                returnValue = ingredient.FirstOrDefault();
+            }
+            return returnValue;
+        }
     }
 }

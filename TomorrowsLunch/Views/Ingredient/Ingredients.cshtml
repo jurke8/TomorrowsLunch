@@ -1,12 +1,12 @@
 ﻿@model IEnumerable<TomorrowsLunch.Models.Ingredient>
 <section class="wrapper style5">
     <div class="inner">
-        <section>
-            @using (Html.BeginForm("Create", "Ingredient", FormMethod.Post, new { id = "ingredientForm" }))
+        <section id="createSection">
+            @using (Html.BeginForm("Create", "Ingredient", FormMethod.Post, new { id = "ingredientCreateForm" }))
             {
-                <div id="formDiv" style="display:none">
+                <div id="createFormDiv" style="display:none">
                     <div class="6u 12u$(xsmall)">
-                        <input type="text" name="name" id="name" value="" placeholder="Naziv sastojka" required/>
+                        <input type="text" name="name" id="name" value="" placeholder="Naziv sastojka" required />
                         <br />
                         <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="carbohydrates" id="carbohydrates" value="" placeholder="Ugljikodirati" />
                         <br />
@@ -17,7 +17,7 @@
                     <br />
                     <div class="12u$">
                         <ul class="actions">
-                            <li><a href="javascript:document.forms['ingredientForm'].submit()" onclick="return validateForm()" class="button special icon fa-plus">Dodaj sastojak</a></li>
+                            <li><a href="javascript:document.forms['ingredientCreateForm'].submit()" onclick="return validateForm()" class="button special icon fa-plus">Dodaj sastojak</a></li>
                             <li><a onclick="return toggleForm()" class="button special icon fa-arrow-left">Odustani</a></li>
                         </ul>
                     </div>
@@ -28,6 +28,32 @@
                     <li><a onclick="return toggleForm()" class="button special icon fa-plus">Dodaj sastojak</a></li>
                 </ul>
             </div>
+        </section>
+        <section id="editSection">
+            @using (Html.BeginForm("Edit", "Ingredient", FormMethod.Post, new { id = "ingredientEditForm" }))
+            {
+                <div id="editFormDiv" style="display:none">
+                    <div class="6u 12u$(xsmall)">
+                        <input type="text" name="name" id="nameEdit" value="" placeholder="Naziv sastojka" required />
+                        <br />
+                        <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="carbohydrates" id="carbohydratesEdit" value="" placeholder="Ugljikodirati" />
+                        <br />
+                        <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="fat" id="fatEdit" value="" placeholder="Masti" required />
+                        <br />
+                        <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="proteins" id="proteinsEdit" value="" placeholder="Proteini" />
+
+                        <input style="visibility:hidden;height:0px" type="text" name="id" id="idEdit" value="" />
+
+                    </div>
+                    <br />
+                    <div class="12u$">
+                        <ul class="actions">
+                            <li><a href="javascript:document.forms['ingredientEditForm'].submit()" onclick="return validateEditForm()" class="button special icon fa-edit">Uredi sastojak</a></li>
+                            <li><a onclick="return closeEditForm()" class="button special icon fa-arrow-left">Odustani</a></li>
+                        </ul>
+                    </div>
+                </div>
+            }
         </section>
         <section>
             <h4>Sastojci</h4>
@@ -50,7 +76,7 @@
                                 <td>@item.Fat</td>
                                 <td>@item.Proteins</td>
                                 <td>
-                                    <a href="#" class="button small icon fa-edit">Uredi</a>
+                                    <a onclick="populateAndShowForm('@item.Name', '@item.Carbohydrates', '@item.Fat', '@item.Proteins' ,'@item.Id')" class="button small icon fa-edit">Uredi</a>
                                 </td>
                                 <td>
                                     <a href="@Url.Action("Delete", "Ingredient", new { id=item.Id })" class="button small icon fa-remove">Obriši</a>
@@ -79,7 +105,7 @@
     document.getElementById("nav").style.visibility = "inherit";
 
     function validateForm() {
-        var x = document.forms["ingredientForm"]["name"].value;
+        var x = document.forms["ingredientCreateForm"]["name"].value;
         if (x == null || x == "") {
             alert("Naziv sastojka mora se popuniti");
             return false;
@@ -97,8 +123,24 @@
         x.style.display = "none";
         y.style.display = "inherit";
     }
+
+    function validateEditForm() {
+        var x = document.forms["ingredientEditForm"]["name"].value;
+        if (x == null || x == "") {
+            alert("Naziv sastojka mora se popuniti");
+            return false;
+        }
+        var c = Number(document.getElementById("carbohydratesEdit").value);
+        var f = Number(document.getElementById("fatEdit").value);
+        var p = Number(document.getElementById("proteinsEdit").value);
+        var sum = c + f + p;
+        if ((sum) != 0 && (sum) != 100) {
+            alert("Ukupni udio mora biti 100 ili 0 posto");
+            return false;
+        }
+    }
     function toggleForm() {
-        var x = document.getElementById("formDiv");
+        var x = document.getElementById("createFormDiv");
         var y = document.getElementById("buttonDiv");
         if (x.style.display == "none") {
             x.style.display = "inherit";
@@ -108,5 +150,27 @@
             x.style.display = "none";
             y.style.display = "inherit";
         }
+    }
+    function closeEditForm() {
+        var x = document.getElementById("editFormDiv");
+        var y = document.getElementById("buttonDiv");
+        x.style.display = "none";
+        y.style.display = "inherit";
+    }
+
+    function populateAndShowForm(name, carbohydrates, fat, proteins, id) {
+        var x = document.getElementById("editFormDiv");
+        var y = document.getElementById("buttonDiv");
+        var z = document.getElementById("createFormDiv");
+        if (!(z.style.display == "none")) {
+            z.style.display = "none";
+        }
+        x.style.display = "inherit";
+        y.style.display = "none";
+        document.getElementById("nameEdit").value = name;
+        document.getElementById("carbohydratesEdit").value = carbohydrates;
+        document.getElementById("fatEdit").value = fat;
+        document.getElementById("proteinsEdit").value = proteins;
+        document.getElementById("idEdit").value = id;
     }
 </script>
