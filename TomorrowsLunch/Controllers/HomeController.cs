@@ -10,7 +10,6 @@ namespace TomorrowsLunch.Controllers
 {
     public class HomeController : Controller
     {
-
         // GET: Home
         public ActionResult Index()
         {
@@ -49,7 +48,7 @@ namespace TomorrowsLunch.Controllers
             ViewBag.ShowLogin = false;
             ViewBag.ShowTitle = false;
 
-            ViewBag.Name = UserController.currentUser.Name;
+            //ViewBag.Name = UserController.currentUser.Name;
             return View();
         }
 

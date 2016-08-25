@@ -28,7 +28,7 @@ namespace TomorrowsLunch.Repositories
                     return data;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return data;
             }

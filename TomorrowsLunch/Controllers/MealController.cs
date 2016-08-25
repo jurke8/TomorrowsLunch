@@ -10,7 +10,6 @@ namespace TomorrowsLunch.Controllers
 {
     public class MealController : Controller
     {
-
         public ActionResult Meals()
         {
             ViewBag.ShowLogin = false;
@@ -18,6 +17,7 @@ namespace TomorrowsLunch.Controllers
             ViewBag.Name = UserController.currentUser.Name;
             var mr = new MealRepository();
             var model = mr.GetAll(UserController.currentUser.Id);
+
             return View(model);
         }
         [HttpPost]
@@ -48,7 +48,5 @@ namespace TomorrowsLunch.Controllers
 
             return View();
         }
-
-
     }
 }

@@ -12,6 +12,7 @@ namespace TomorrowsLunch.Models
         public int Carbohydrates { get; set; }
         public int Fat { get; set; }
         public int Proteins { get; set; }
+        public int Calories { get; set; }
 
         public Ingredient()
         {

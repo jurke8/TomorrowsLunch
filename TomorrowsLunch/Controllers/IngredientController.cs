@@ -25,15 +25,18 @@ namespace TomorrowsLunch.Controllers
         public ActionResult Create(FormCollection frmc)
         {
             var ir = new IngredientRepository();
-            int carbs, fat, proteins;
+            int carbs, fat, proteins, calories;
             carbs = (Int32.TryParse(frmc["carbohydrates"], out carbs)) ? carbs : 0;
             fat = (Int32.TryParse(frmc["fat"], out fat)) ? fat : 0;
             proteins = (Int32.TryParse(frmc["proteins"], out proteins)) ? proteins : 0;
+            calories = (Int32.TryParse(frmc["calories"], out calories)) ? calories : 0;
+
 
             ir.Create(new Ingredient()
             {
                 Name = frmc["name"],
                 Carbohydrates = carbs,
+                Calories = calories,
                 Fat = fat,
                 Proteins = proteins,
                 CreatedByUser = UserController.currentUser.Id
@@ -44,8 +47,9 @@ namespace TomorrowsLunch.Controllers
         public ActionResult Edit(FormCollection frmc)
         {
             var ir = new IngredientRepository();
-            int carbs, fat, proteins;
+            int calories, carbs, fat, proteins;
             Guid id;
+            calories = (Int32.TryParse(frmc["calories"], out calories)) ? calories : 0;
             carbs = (Int32.TryParse(frmc["carbohydrates"], out carbs)) ? carbs : 0;
             fat = (Int32.TryParse(frmc["fat"], out fat)) ? fat : 0;
             proteins = (Int32.TryParse(frmc["proteins"], out proteins)) ? proteins : 0;
@@ -53,6 +57,7 @@ namespace TomorrowsLunch.Controllers
 
             var ingredientModel = ir.GetSpecific(id);
             ingredientModel.Name = frmc["name"];
+            ingredientModel.Calories = calories;
             ingredientModel.Carbohydrates = carbs;
             ingredientModel.Fat = fat;
             ingredientModel.Proteins = proteins;

@@ -24,6 +24,41 @@
                         <div class="6u$ 12u$(xsmall)">
                             <input type="password" name="confirmpass" id="confirmpass" value="" placeholder="Ponovi lozinku" />
                         </div>
+                        <hr>
+                        <div class="4u 12u$(small)">
+                            <input type="radio" id="male" name="gender" value="male" checked>
+                            <label for="male">Muško</label>
+                        </div>
+                        <div class="4u 12u$(small)">
+                            <input type="radio" id="female" name="gender" value="female">
+                            <label for="female">Žensko</label>
+                        </div>
+                        
+                        <br />
+                        <div class="6u$ 12u$(xsmall)">
+                            <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="age" id="age" value="" placeholder="Dob (godine)" />
+                        </div>
+                        <br />
+                        <div class="6u$ 12u$(xsmall)">
+                            <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="height" id="height" value="" placeholder="Visina (cm)" />
+                        </div>
+                        <br />
+                        <div class="6u$ 12u$(xsmall)">
+                            <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="weight" id="weight" value="" placeholder="Težina (kg)" />
+                        </div>
+                        <br />
+                        <div class="6u$">
+                            <div class="select-wrapper">
+                                <select name="activity" id="activity">
+                                    <option value="-1">- Tjedna aktivnost -</option>
+                                    <option value="1">Nikakva</option>
+                                    <option value="2">Laka (1-3 tjedno sport)</option>
+                                    <option value="3">Srednje teška (4-5 tjedno sport)</option>
+                                    <option value="4">Teška (6-7 tjedno sport)</option>
+                                    <option value="5">Ekstremno teška</option>
+                                </select>
+                            </div>
+                        </div>
                         <br />
                         <div class="12u$">
                             <ul class="actions">

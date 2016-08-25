@@ -1,24 +1,24 @@
 ﻿@model IEnumerable<TomorrowsLunch.Models.Meal>
 <section class="wrapper style5">
     <div class="inner">
-        <br />
-        <section>
-            @using (Html.BeginForm("Create", "Meal", FormMethod.Post, new { id = "mealForm" }))
+        <section id="createSection">
+            @using (Html.BeginForm("Create", "Meal", FormMethod.Post, new { id = "mealCreateForm" }))
             {
-                <div id="formDiv" style="display:none">
+                <div id="createFormDiv" style="display:none">
                     <div class="6u 12u$(xsmall)">
                         <input type="text" name="name" id="name" value="" placeholder="Naziv jela" />
                         <br />
-                        <input type="text" name="2" id="2" value="" placeholder="bla jela" />
-                        <br />
-                        <input type="text" name="3" id="3" value="" placeholder="bla jela" />
+                        <h5>Sastojci</h5>
+                        <ul>
+                            <li><input type="text" name="name" id="name" value="" placeholder="Naziv sastojka" /></li>
+                        </ul>
                     </div>
                     <br />
                     <div class="12u$">
                         <ul class="actions">
-                            <li><a href="javascript:document.forms['mealForm'].submit()" onclick="return validateForm()" class="button special icon fa-plus">Dodaj jelo</a></li>
+                            <li><a href="javascript:document.forms['mealCreateForm'].submit()" onclick="return validateForm()" class="button special icon fa-plus">Dodaj jelo</a></li>
                             <li><a onclick="return toggleForm()" class="button special icon fa-arrow-left">Odustani</a></li>
-                         </ul>
+                        </ul>
                     </div>
                 </div>
             }
@@ -35,7 +35,6 @@
                     <thead>
                         <tr>
                             <th>Naziv jela</th>
-                            <th>Datum kreiranja</th>
                             <th>Sastojci</th>
                         </tr>
                     </thead>
@@ -44,8 +43,16 @@
                         {
                             <tr>
                                 <td>@item.Name</td>
-                                <td>@item.DateCreated</td>
-                                <td>Sastojci</td>
+                                <td>
+                                    <div class="select-wrapper">
+                                        <select>
+                                            @foreach (var ingredient in item.Ingredients)
+                                            {
+                                                <option disabled="disabled">@ingredient.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </td>
                                 <td>
                                     <a href="#" class="button small icon fa-edit">Uredi</a>
                                 </td>
@@ -64,7 +71,7 @@
     document.getElementById("nav").style.visibility = "inherit";
 
     function validateForm() {
-        var x = document.forms["mealForm"]["name"].value;
+        var x = document.forms["mealCreateForm"]["name"].value;
         var y = document.getElementById("buttonDiv");
         if (x == null || x == "") {
             alert("Naziv jela mora se popuniti");
@@ -74,7 +81,7 @@
         y.style.display = "inherit";
     }
     function toggleForm() {
-        var x = document.getElementById("formDiv");
+        var x = document.getElementById("createFormDiv");
         var y = document.getElementById("buttonDiv");
         if (x.style.display == "none") {
             x.style.display = "inherit";

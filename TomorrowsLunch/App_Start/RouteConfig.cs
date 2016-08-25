@@ -35,6 +35,11 @@ namespace TomorrowsLunch
                 defaults: new { controller = "User", action = "Registration", id = UrlParameter.Optional }
             );
             routes.MapRoute(
+                name: "EditProfile",
+                url: "EditProfile/{id}",
+                defaults: new { controller = "User", action = "EditProfile", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
                 name: "Meals",
                 url: "Meals/{action}/{id}",
                 defaults: new { controller = "Meal", action = "Meals", id = UrlParameter.Optional }

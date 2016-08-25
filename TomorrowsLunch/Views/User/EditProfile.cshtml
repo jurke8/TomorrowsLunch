@@ -1,0 +1,122 @@
+﻿@model TomorrowsLunch.Models.User
+
+<br />
+<article id="main">
+    <section class="wrapper style5">
+        <div class="inner">
+
+            <section>
+                <h4>Informacije</h4>
+                @using (Html.BeginForm("Profile", "User", FormMethod.Post, new { id = "profileForm" }))
+                {
+                    <div>
+                        <div class="6u 12u$(xsmall)">
+                            <input type="text" name="name" disabled="disabled" id="name" value="@Model.Name" placeholder="Ime"/>
+                        </div>
+                        <br />
+                        <div class="6u 12u$(xsmall)">
+                            <input type="email" name="email" id="email" value="@Model.Email" placeholder="Email" />
+                        </div>
+                        <hr>
+                        Spol:
+                        <br />
+                        <div class="4u 12u$(small)">
+                            @if ("male".Equals(Model.Gender))
+                            {
+                                <input type="radio" id="male" name="gender" value="male" checked="checked">
+                            }
+                            else
+                            {
+                                <input type="radio" id="male" name="gender" value="male">
+                            }
+                            <label for="male">Muški</label>
+                        </div>
+                        <div class="4u 12u$(small)">
+                            @if ("female".Equals(Model.Gender))
+                            {
+                                <input type="radio" id="female" name="gender" value="female" checked="checked">
+                            }
+                            else
+                            {
+                                <input type="radio" id="female" name="gender" value="female">
+                            }
+                            <label for="female">Ženski</label>
+                        </div>
+                        <br />
+                        Dob
+                        <div class="6u$ 12u$(xsmall)">
+                            <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="age" id="age" value="@Model.Age" placeholder="Dob (godine)" />
+                        </div>
+                        <br />
+                        Visina
+                        <div class="6u$ 12u$(xsmall)">
+                            <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="height" id="height" value="@Model.Height" placeholder="Visina (cm)" />
+                        </div>
+                        <br />
+                        Težina
+                        <div class="6u$ 12u$(xsmall)">
+                            <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="weight" id="weight" value="@Model.Weight" placeholder="Težina (kg)" />
+                        </div>
+                        <br />
+                        Tjedna aktivnost:
+                        <div class="6u$">
+                            <div class="select-wrapper">
+                                <select name="activity" id="activity">
+                                    <option value="1">Nikakva</option>
+                                    <option value="2">Laka (1-3 tjedno sport)</option>
+                                    <option value="3">Srednje teška (4-5 tjedno sport)</option>
+                                    <option value="4">Teška (6-7 tjedno sport)</option>
+                                    <option value="5">Ekstremno teška</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br />
+                        BMI
+                        <div class="6u$ 12u$(xsmall)">
+                            <input type="text" name="BMI" id="BMI" disabled="disabled" value="@Model.BMI" />
+                        </div>
+                        <br />
+                        BMR
+                        <div class="6u$ 12u$(xsmall)">
+                            <input type="text" name="BMR" id="BMR" disabled="disabled" value="@Model.BMR" />
+                        </div>
+                        <br />
+                        Dnevni unos kalorija
+                        <div class="6u$ 12u$(xsmall)">
+                            <input type="text" name="CPD" id="CPD" disabled="disabled" value="@Model.CaloriesPerDay" />
+                        </div>
+                        <br />
+                        <div class="12u$">
+                            <ul class="actions">
+                                <li><a href="javascript:document.forms['profileForm'].submit()" onclick="return validateForm()" class="button special icon fa-save">Snimi promjene</a></li>
+                            </ul>
+                        </div>
+                        <div style="color:red; font-weight:bold">@ViewBag.Message</div>
+                    </div>
+                }
+            </section>
+        </div>
+    </section>
+</article>
+<script>
+    document.getElementById("nav").style.visibility = "inherit";
+    var element = document.getElementById('activity');
+    element.value = @Model.Activity;
+    $('[name="email"]').on('invalid', function (e) {
+        e.target.setCustomValidity("Neispravna email adresa");
+    });
+    function validateForm() {
+        var y = document.forms["profileForm"]["email"].value;
+        if (y == null || y == "") {
+            alert("Email se mora popuniti");
+            return false;
+        }
+        var atpos = y.indexOf("@@");
+        var dotpos = y.lastIndexOf(".");
+        if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= y.length) {
+            alert("Neispravna email adresa");
+            return false;
+        }
+
+    }
+</script>

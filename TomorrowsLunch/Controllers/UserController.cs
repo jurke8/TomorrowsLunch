@@ -47,7 +47,13 @@ namespace TomorrowsLunch.Controllers
                     var data = Encoding.ASCII.GetBytes(frmc["pass"]);
                     var sha1 = new SHA1CryptoServiceProvider();
                     var hashedPasssword = sha1.ComputeHash(data);
-                    var newUser = ur.Create(new User() { Name = userName, Email = frmc["email"], Password = hashedPasssword });
+                    int age, height, weight, activity;
+                    age = (Int32.TryParse(frmc["age"], out age)) ? age : 25;
+                    height = (Int32.TryParse(frmc["height"], out height)) ? height : 180;
+                    weight = (Int32.TryParse(frmc["weight"], out weight)) ? weight : 70;
+                    activity = (Int32.TryParse(frmc["activity"], out activity)) ? activity : 3;
+                    activity = (activity == -1) ? 3 : activity;
+                    var newUser = ur.Create(new User() { Name = userName, Email = frmc["email"], Password = hashedPasssword, Age = age, Height = height, Weight = weight, Activity = activity, Gender = frmc["gender"] });
                     ViewBag.ShowLogin = false;
                     ViewBag.ShowTitle = false;
                     return RedirectToAction("Login", new { message = "Uspješno ste registrirani!!!" });
@@ -95,6 +101,35 @@ namespace TomorrowsLunch.Controllers
                     return RedirectToAction("Login", "User", new { message = "Kriva lozinka!!!" });
                 }
             }
+        }
+        public ActionResult EditProfile()
+        {
+            ViewBag.ShowLogin = false;
+            ViewBag.ShowTitle = false;
+            ViewBag.Name = currentUser.Name;
+
+
+            var model = currentUser;
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult EditProfile(FormCollection frmc)
+        {
+            var ur = new UserRepository();
+            int age, height, weight, activity;
+            age = (Int32.TryParse(frmc["age"], out age)) ? age : 25;
+            height = (Int32.TryParse(frmc["height"], out height)) ? height : 180;
+            weight = (Int32.TryParse(frmc["weight"], out weight)) ? weight : 70;
+            activity = (Int32.TryParse(frmc["activity"], out activity)) ? activity : 3;
+            activity = (activity == -1) ? 3 : activity;
+            currentUser.Email = frmc["email"];
+            currentUser.Age = age;
+            currentUser.Height = height;
+            currentUser.Weight = weight;
+            currentUser.Activity = activity;
+            currentUser.Gender = frmc["gender"];
+            ur.Update(currentUser);
+            return RedirectToAction("EditProfile");
         }
     }
 }

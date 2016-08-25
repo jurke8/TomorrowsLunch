@@ -38,6 +38,7 @@
                         <a id="menuText" href="#menu" class="menuToggle"><span>@ViewBag.Name</span></a>
                         <div id="menu">
                             <ul>
+                                <li class="icon fa-user" style="display:flex">@Html.ActionLink("Profil", "EditProfile", "User")</li>
                                 <li class="icon fa-calendar" style="display:flex">@Html.ActionLink("Kalendar", "Home", "Home")</li>
                                 <li class="icon fa-birthday-cake" style="display:flex">@Html.ActionLink("Jela", "Meals", "Meal")</li>
                                 <li class="icon fa-lemon-o" style="display:flex">@Html.ActionLink("Sastojci", "Ingredients", "Ingredient")</li>

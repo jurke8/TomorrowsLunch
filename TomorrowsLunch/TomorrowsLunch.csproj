@@ -191,6 +191,14 @@
     <Compile Include="Migrations\201606281256230_Initial.Designer.cs">
       <DependentUpon>201606281256230_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608241604595_calories_added.cs" />
+    <Compile Include="Migrations\201608241604595_calories_added.Designer.cs">
+      <DependentUpon>201608241604595_calories_added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608251020284_user_model_updated.cs" />
+    <Compile Include="Migrations\201608251020284_user_model_updated.Designer.cs">
+      <DependentUpon>201608251020284_user_model_updated.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BaseEntity.cs" />
@@ -229,6 +237,7 @@
     <Content Include="Views\Ingredient\Ingredients.cshtml" />
     <Content Include="Views\Meal\Recipes.cshtml" />
     <Content Include="Views\Meal\Meals.cshtml" />
+    <Content Include="Views\User\EditProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -244,6 +253,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201606281256230_Initial.resx">
       <DependentUpon>201606281256230_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608241604595_calories_added.resx">
+      <DependentUpon>201608241604595_calories_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608251020284_user_model_updated.resx">
+      <DependentUpon>201608251020284_user_model_updated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
