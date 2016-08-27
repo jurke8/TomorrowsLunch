@@ -7,7 +7,7 @@ namespace TomorrowsLunch.Models
 {
     public class Ingredient : BaseEntity
     {
-        public virtual ICollection<Meal> Meals { get; set; }
+        //public virtual ICollection<Meal> Meals { get; set; }
         public Guid CreatedByUser { get; set; }
         public int Carbohydrates { get; set; }
         public int Fat { get; set; }
@@ -18,7 +18,7 @@ namespace TomorrowsLunch.Models
         {
             Id = Guid.NewGuid();
             DateCreated = DateTime.Now;
-            Meals = new HashSet<Meal>();
+            //Meals = new HashSet<Meal>();
         }
     }
 }

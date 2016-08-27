@@ -15,8 +15,11 @@ namespace TomorrowsLunch.Controllers
             ViewBag.ShowLogin = false;
             ViewBag.ShowTitle = false;
             ViewBag.Name = UserController.currentUser.Name;
+            var ir = new IngredientRepository();
             var mr = new MealRepository();
-            var model = mr.GetAll(UserController.currentUser.Id);
+
+            ViewBag.Meals = mr.GetAll(UserController.currentUser.Id);
+            var model = ir.GetAll(UserController.currentUser.Id);
 
             return View(model);
         }
@@ -24,12 +27,44 @@ namespace TomorrowsLunch.Controllers
         public ActionResult Create(FormCollection frmc)
         {
             var mealName = frmc["name"];
+            var ir = new IngredientRepository();
+            var ingredients = ir.GetAll(UserController.currentUser.Id);
+            var mealIngredients = new List<Ingredient>() { new Ingredient() { Name = "probica", Id = Guid.Parse("0d9623b6-5bfb-4c64-8d48-0cdfe9521584") } };
+            mealIngredients.Clear();
+            var quanitites = new List<decimal>();
+            var ingredientsQuantites = new List<MealIngredientQuantity>();
+            for (int i = 1; i < frmc.Count; i++)
+            {
+                var x = frmc[i];
+                if (i % 2 != 0)
+                {
+                    mealIngredients.Add(ingredients.Where(ing => ing.Id.ToString().Equals(frmc[i])).FirstOrDefault());
+                }
+                else
+                {
+                    decimal quantity;
+                    quantity = (Decimal.TryParse(frmc[i], out quantity)) ? quantity : 0;
+                    quanitites.Add(quantity);
+                }
+            }
             var mr = new MealRepository();
-            mr.Create(new Meal()
+            for (int i = 0; i < mealIngredients.Count; i++)
+            {
+                ingredientsQuantites.Add(new MealIngredientQuantity()
+                {
+                    CreatedByUser = UserController.currentUser.Id,
+                    IngredientId = mealIngredients.ElementAt(i).Id,
+                    IngredientName = mealIngredients.ElementAt(i).Name,
+                    Quantity = quanitites.ElementAt(i)
+                });
+            }
+            var meal = mr.Create(new Meal()
             {
                 Name = mealName,
-                CreatedByUser = UserController.currentUser.Id
+                CreatedByUser = UserController.currentUser.Id,
+                MealIngredientQuantites = ingredientsQuantites
             });
+
             return RedirectToAction("Meals");
         }
         public ActionResult Delete(Guid id)
@@ -37,7 +72,7 @@ namespace TomorrowsLunch.Controllers
             var mr = new MealRepository();
             var model = mr.GetAll(UserController.currentUser.Id);
             var toDelete = model.Where(x => id.Equals(x.Id)).FirstOrDefault();
-            mr.Delete(toDelete);
+            mr.DeleteMeal(toDelete);
             return RedirectToAction("Meals");
         }
         public ActionResult Recipes()

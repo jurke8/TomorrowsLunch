@@ -7,14 +7,14 @@ namespace TomorrowsLunch.Models
 {
     public class Meal : BaseEntity
     {
-        public virtual ICollection<Ingredient> Ingredients { get; set; }
+        public virtual ICollection<MealIngredientQuantity> MealIngredientQuantites { get; set; }
         public Guid CreatedByUser { get; set; }
 
         public Meal()
         {
             Id = Guid.NewGuid();
             DateCreated = DateTime.Now;
-            Ingredients = new HashSet<Ingredient>();
+            MealIngredientQuantites = new HashSet<MealIngredientQuantity>();
         }
     }
     

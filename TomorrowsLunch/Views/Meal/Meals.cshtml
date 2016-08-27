@@ -1,4 +1,9 @@
-﻿@model IEnumerable<TomorrowsLunch.Models.Meal>
+﻿@model IEnumerable<TomorrowsLunch.Models.Ingredient>
+@{
+    IEnumerable<TomorrowsLunch.Models.Meal> meals = ViewBag.Meals;
+}
+@using Newtonsoft.Json
+
 <section class="wrapper style5">
     <div class="inner">
         <section id="createSection">
@@ -9,9 +14,9 @@
                         <input type="text" name="name" id="name" value="" placeholder="Naziv jela" />
                         <br />
                         <h5>Sastojci</h5>
-                        <ul>
-                            <li><input type="text" name="name" id="name" value="" placeholder="Naziv sastojka" /></li>
-                        </ul>
+                        <ul id="ingredients"></ul>
+                        <a onclick="return newIngredient()" class="button small icon fa-plus">Novi sastojak</a>
+                        <a id="removeIngredientButton" style="display:none" onclick="return removeIngredient()" class="button small icon fa-remove">Ukloni sastojak</a>
                     </div>
                     <br />
                     <div class="12u$">
@@ -39,16 +44,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model)
+                        @foreach (var item in meals)
                         {
                             <tr>
                                 <td>@item.Name</td>
                                 <td>
                                     <div class="select-wrapper">
                                         <select>
-                                            @foreach (var ingredient in item.Ingredients)
+                                            @foreach (var mealIngredientQuantity in item.MealIngredientQuantites)
                                             {
-                                                <option disabled="disabled">@ingredient.Name</option>
+                                                <option disabled="disabled">@mealIngredientQuantity.IngredientName</option>
                                             }
                                         </select>
                                     </div>
@@ -69,7 +74,59 @@
 </section>
 <script>
     document.getElementById("nav").style.visibility = "inherit";
+    var ingredientsList = document.getElementById('ingredients');
+    var ingredients = @Html.Raw(Json.Encode(Model));
+    counter = 1;
 
+    function newIngredient() {
+        var entry = document.createElement('li');
+        var selectList = document.createElement("select");
+        selectList.id = "ingredient_"+ counter;
+        selectList.name = "ingredient_"+ counter;
+        selectList.style.display = "inline";
+        selectList.style.width = "inherit";
+        entry.appendChild(selectList);
+        var option = document.createElement("option");
+        option.value = "-1";
+        option.text = "-Odaberi sastojak-";
+        selectList.appendChild(option);
+
+        for (var i = 0; i < ingredients.length; i++) {
+            var option = document.createElement("option");
+            option.value = ingredients[i].Id;
+            option.text = ingredients[i].Name;
+            selectList.appendChild(option);
+        }
+
+        var quantity = document.createElement("input");
+        quantity.type = "text";
+        quantity.id = "ingredient_"+ counter + "_q";
+        quantity.name = "ingredient_"+ counter + "_q";
+        quantity.onkeypress =function(){return event.charCode >= 48 && event.charCode <= 57};
+        quantity.style.display = "inline";
+        quantity.style.width = "28%";
+        quantity.style.marginLeft = "5%";
+        quantity.style.marginBottom = "1%";
+        quantity.placeholder = "količina (g)";
+
+        entry.appendChild(quantity);
+        ingredientsList.appendChild(entry);
+        if (counter==1) {
+            document.getElementById("removeIngredientButton").style.display = "inline-block";
+        }
+        counter++;
+    }
+    function removeIngredient(){
+        if (counter>1) {
+            var lastChild = ingredientsList.lastChild;
+            ingredientsList.removeChild(lastChild);
+            counter--;
+            if (counter==1) {
+                document.getElementById("removeIngredientButton").style.display = "none";
+            }
+        }
+
+    }
     function validateForm() {
         var x = document.forms["mealCreateForm"]["name"].value;
         var y = document.getElementById("buttonDiv");
@@ -77,8 +134,15 @@
             alert("Naziv jela mora se popuniti");
             return false;
         }
+        for (var i = 1; i < counter; i++) {
+            if (document.getElementById("ingredient_"+ i).value=="-1") {
+                alert("Sastojak se mora odabrati");
+                return false;
+            }
+        }
         x.style.display = "none";
         y.style.display = "inherit";
+        counter = 1;
     }
     function toggleForm() {
         var x = document.getElementById("createFormDiv");

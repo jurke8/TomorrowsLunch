@@ -12,6 +12,8 @@ namespace TomorrowsLunch.Models
         public DbSet<Meal> Meals { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<MealIngredientQuantity> MealIngredientQuantites { get; set; }
+
 
         public ApplicationDbContext()
             : base("DefaultConnection")
@@ -19,16 +21,9 @@ namespace TomorrowsLunch.Models
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-
-            modelBuilder.Entity<Meal>()
-                        .HasMany<Ingredient>(i => i.Ingredients)
-                        .WithMany(m => m.Meals)
-                        .Map(cs =>
-                        {
-                            cs.MapLeftKey("MealRefId");
-                            cs.MapRightKey("IngredientRefId");
-                            cs.ToTable("MealIngredient");
-                        });
+            modelBuilder.Entity<MealIngredientQuantity>()
+                                .HasRequired<Meal>(m => m.Meal)
+                                .WithMany(m => m.MealIngredientQuantites);
         }
         
     }

@@ -8,13 +8,24 @@ namespace TomorrowsLunch.Repositories
 {
     public class MealRepository : BaseRepository<Meal>
     {
+        public object DeleteMeal(Meal meal)
+        {
+            var miqr = new MealIngredientQuantityRepository();
+            meal.Deleted = true;
+            meal.MealIngredientQuantites.ToList().ForEach(
+                miq =>
+                {
+                    miqr.Delete(miq);
+                });
+            return Update(meal);
+        }
         public List<Meal> GetAll(Guid currentUser)
         {
             IQueryable<Meal> meals;
             var mealsList = new List<Meal>();
             using (var db = new ApplicationDbContext())
             {
-                meals = db.Meals.Include(m => m.Ingredients).Where(m => !m.Deleted).Where(m => m.CreatedByUser == currentUser).OrderByDescending(x=> x.DateCreated);
+                meals = db.Meals.Include(m => m.MealIngredientQuantites).Where(m => !m.Deleted).Where(m => m.CreatedByUser == currentUser).OrderByDescending(x => x.DateCreated);
                 mealsList = meals.ToList();
             }
             return mealsList;
@@ -26,11 +37,11 @@ namespace TomorrowsLunch.Repositories
             using (var db = new ApplicationDbContext())
             {
                 //include
-                meal = db.Meals.Include(p => p.Ingredients).Where(m => m.Id == specificMealId);
+                meal = db.Meals.Include(m => m.MealIngredientQuantites).Where(m => m.Id == specificMealId);
                 returnValue = meal.FirstOrDefault();
             }
             return returnValue;
         }
     }
-   
+
 }

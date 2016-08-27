@@ -15,7 +15,7 @@ namespace TomorrowsLunch.Repositories
             var ingredientsList = new List<Ingredient>();
             using (var db = new ApplicationDbContext())
             {
-                ingredients = db.Ingredients.Include(i => i.Meals).Where(i => !i.Deleted).Where(i => i.CreatedByUser == currentUser).OrderByDescending(x => x.DateCreated);
+                ingredients = db.Ingredients.Where(i => !i.Deleted).Where(i => i.CreatedByUser == currentUser).OrderByDescending(x => x.DateCreated);
                 ingredientsList = ingredients.ToList();
             }
             return ingredientsList;
@@ -27,7 +27,7 @@ namespace TomorrowsLunch.Repositories
             using (var db = new ApplicationDbContext())
             {
                 //include
-                ingredient = db.Ingredients.Include(i => i.Meals).Where(i => i.Id == specificIngredientId);
+                ingredient = db.Ingredients.Where(i => i.Id == specificIngredientId);
                 returnValue = ingredient.FirstOrDefault();
             }
             return returnValue;

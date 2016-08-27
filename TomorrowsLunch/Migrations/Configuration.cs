@@ -28,10 +28,10 @@ namespace TomorrowsLunch.Migrations
                 {
                     meal.DateCreated = initialDate;
                     meal.CreatedByUser = initialUserId;
-                    foreach (Ingredient ingredient in IngredientsDummy.Data)
-                    {
-                        meal.Ingredients.Add(ingredient);
-                    }
+                    //foreach (Ingredient ingredient in IngredientsDummy.Data)
+                    //{
+                    //    meal.Ingredients.Add(ingredient);
+                    //}
                     context.Meals.AddOrUpdate(m => m.Name, meal);
                 });
 
