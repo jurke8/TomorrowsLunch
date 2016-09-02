@@ -94,7 +94,7 @@ namespace TomorrowsLunch.Controllers
                     currentUser = user;
                     ViewBag.ShowLogin = false;
                     ViewBag.ShowTitle = false;
-                    return RedirectToAction("Home", "Home", new { message = "Uspješno ste prijavljeni" });
+                    return RedirectToAction("Calendar", "Calendar", new { message = "Uspješno ste prijavljeni" });
                 }
                 else
                 {

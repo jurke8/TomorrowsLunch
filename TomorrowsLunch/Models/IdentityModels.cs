@@ -2,7 +2,7 @@
 
 namespace TomorrowsLunch.Models
 {
-     //You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
+    //You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     //public class ApplicationUser : IdentityUser
     //{
     //}
@@ -13,6 +13,7 @@ namespace TomorrowsLunch.Models
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<MealIngredientQuantity> MealIngredientQuantites { get; set; }
+        public DbSet<Calendar> Calendars { get; set; }
 
 
         public ApplicationDbContext()
@@ -21,10 +22,16 @@ namespace TomorrowsLunch.Models
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<Calendar>()
+                        .HasRequired<Meal>(c => c.Meal)
+                        .WithMany(m => m.Calendars);
+
             modelBuilder.Entity<MealIngredientQuantity>()
-                                .HasRequired<Meal>(m => m.Meal)
-                                .WithMany(m => m.MealIngredientQuantites);
+                        .HasRequired<Meal>(miq => miq.Meal)
+                        .WithMany(m => m.MealIngredientQuantites);
+
         }
-        
+
     }
 }

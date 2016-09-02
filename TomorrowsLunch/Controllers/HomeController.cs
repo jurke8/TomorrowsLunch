@@ -13,23 +13,6 @@ namespace TomorrowsLunch.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            //var mr = new MealRepository();
-            //var id = Guid.NewGuid();
-            //var m = new Meal() { Name = "proba_update2", CreatedByUser = id };
-            //mr.Create(m);
-            //var myId = mr.GetAll().Where(y => y.CreatedByUser == id).Single().Id;
-
-            //var myMeal = mr.GetSpecific(myId);
-            //((Meal)myMeal).Name = "proba_update3";
-
-            //mr.Update(myMeal);
-
-            //ViewBag.Message = ((Meal)myMeal).Name;
-
-            //foreach (var item in x)
-            //{
-            //    ViewBag.Message += item.Name + " ";
-            //}
             ViewBag.ShowTitle = true;
 
             ViewBag.ShowLogin = true;

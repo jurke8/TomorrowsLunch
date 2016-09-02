@@ -1,0 +1,111 @@
+﻿@model IEnumerable<TomorrowsLunch.Models.Calendar>
+<!-- Main -->
+<br />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
+<section class="wrapper style5">
+    <div class="inner">
+        <section id="createSection">
+            @using (Html.BeginForm("Create", "Calendar", FormMethod.Post, new { id = "calendarCreateForm" }))
+            {
+                <div id="createFormDiv" style="display:none">
+                    <div class="6u 12u$(xsmall)">
+                        <input style="width:inherit" type="text" id="date" name="date" placeholder="unesite datum">
+                        <br />
+                        <div class="6u$ 12u$(xsmall)">
+                            <div class="select-wrapper">
+                                <select name="meal" id="meal">
+                                    <option value="-1">-- Jelo --</option>
+                                    @foreach (var item in ViewBag.Meals)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="12u$">
+                        <ul class="actions">
+                            <li><a href="javascript:document.forms['calendarCreateForm'].submit()" onclick="return isValidDate(date.value)" class="button special icon fa-plus">Dodaj u kalendar</a></li>
+                            <li><a onclick="return toggleForm()" class="button special icon fa-arrow-left">Odustani</a></li>
+                        </ul>
+                    </div>
+                </div>
+            }
+            <div class="12u$" id="buttonDiv">
+                <ul class="actions">
+                    <li><a onclick="return toggleForm()" class="button special icon fa-plus">Dodaj u kalendar</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h4>Kalendar</h4>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Datum</th>
+                            <th>Dan</th>
+                            <th>Jelo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.CalendarDate.ToShortDateString()</td>
+                                <td>@item.DayOfWeek</td>
+                                <td>@item.Meal.Name</td>
+                                <td>
+                                    <a href="@Url.Action("Delete", "Calendar", new { id=item.Id })" class="button small icon fa-remove">Obriši</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+
+    </div>
+</section>
+
+<script>
+    document.getElementById("nav").style.visibility = "inherit";
+    function isValidDate(date) {
+        var matches = /^(\d{1,2})[-\/](\d{1,2})[-\/](\d{4})$/.exec(date);
+        if (matches == null)
+        {
+            alert("Datum nije valjan");
+            return false;
+        }
+        else
+        return true;
+    }
+    function toggleForm() {
+        var x = document.getElementById("createFormDiv");
+        var y = document.getElementById("buttonDiv");
+        if (x.style.display == "none") {
+            x.style.display = "inherit";
+            y.style.display = "none";
+        }
+        else {
+            x.style.display = "none";
+            y.style.display = "inherit";
+        }
+    }
+
+    $( function() {
+        $("#date").datepicker({
+            dateFormat: "dd-mm-yy",
+            inline: true,
+            showOtherMonths: true,
+            monthNames: ["Siječanj", "Veljača", "Ožujak", "Travanj", "Svibanj", "Lipanj", "Srpanj", "Kolovoz", "Rujan", "Listopad", "Studeni", "Prosinac"],
+            dayNamesMin: ['Pon', 'Uto', 'Sri', 'Čet', 'Pet', 'Sub', 'Ned']
+        });
+    } );
+</script>

@@ -3838,3 +3838,6 @@
     .indexpadding {
 		padding: 3em 0 2em 0 !important;
 	}
+    .ui-datepicker th {
+color:black !important;
+}

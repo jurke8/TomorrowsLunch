@@ -40,6 +40,11 @@ namespace TomorrowsLunch
                 defaults: new { controller = "User", action = "EditProfile", id = UrlParameter.Optional }
             );
             routes.MapRoute(
+                name: "Calendar",
+                url: "Calendar/{action}/{id}",
+                defaults: new { controller = "Calendar", action = "Calendar", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
                 name: "Meals",
                 url: "Meals/{action}/{id}",
                 defaults: new { controller = "Meal", action = "Meals", id = UrlParameter.Optional }

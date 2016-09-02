@@ -29,21 +29,21 @@ namespace TomorrowsLunch.Controllers
             var mealName = frmc["name"];
             var ir = new IngredientRepository();
             var ingredients = ir.GetAll(UserController.currentUser.Id);
-            var mealIngredients = new List<Ingredient>() { new Ingredient() { Name = "probica", Id = Guid.Parse("0d9623b6-5bfb-4c64-8d48-0cdfe9521584") } };
-            mealIngredients.Clear();
-            var quanitites = new List<decimal>();
+            var mealIngredients = new List<Ingredient>();
+            var quanitites = new List<int>();
             var ingredientsQuantites = new List<MealIngredientQuantity>();
+            //var calendars = new List<Calendar>();
+
             for (int i = 1; i < frmc.Count; i++)
             {
-                var x = frmc[i];
                 if (i % 2 != 0)
                 {
                     mealIngredients.Add(ingredients.Where(ing => ing.Id.ToString().Equals(frmc[i])).FirstOrDefault());
                 }
                 else
                 {
-                    decimal quantity;
-                    quantity = (Decimal.TryParse(frmc[i], out quantity)) ? quantity : 0;
+                    int quantity;
+                    quantity = (Int32.TryParse(frmc[i], out quantity)) ? quantity : 0;
                     quanitites.Add(quantity);
                 }
             }
@@ -62,9 +62,32 @@ namespace TomorrowsLunch.Controllers
             {
                 Name = mealName,
                 CreatedByUser = UserController.currentUser.Id,
-                MealIngredientQuantites = ingredientsQuantites
+                MealIngredientQuantites = ingredientsQuantites,
+                //Calendars = calendars
             });
 
+            return RedirectToAction("Meals");
+        }
+        [HttpPost]
+        public ActionResult Edit(FormCollection frmc)
+        {
+            //var ir = new IngredientRepository();
+            //int calories, carbs, fat, proteins;
+            //Guid id;
+            //calories = (Int32.TryParse(frmc["calories"], out calories)) ? calories : 0;
+            //carbs = (Int32.TryParse(frmc["carbohydrates"], out carbs)) ? carbs : 0;
+            //fat = (Int32.TryParse(frmc["fat"], out fat)) ? fat : 0;
+            //proteins = (Int32.TryParse(frmc["proteins"], out proteins)) ? proteins : 0;
+            //id = new Guid(frmc["id"]);
+
+            //var ingredientModel = ir.GetSpecific(id);
+            //ingredientModel.Name = frmc["name"];
+            //ingredientModel.Calories = calories;
+            //ingredientModel.Carbohydrates = carbs;
+            //ingredientModel.Fat = fat;
+            //ingredientModel.Proteins = proteins;
+
+            //ir.Update(ingredientModel);
             return RedirectToAction("Meals");
         }
         public ActionResult Delete(Guid id)

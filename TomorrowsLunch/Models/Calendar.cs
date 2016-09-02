@@ -5,19 +5,19 @@ using System.Web;
 
 namespace TomorrowsLunch.Models
 {
-    public class MealIngredientQuantity : BaseEntity
+    public class Calendar : BaseEntity
     {
-        public Guid IngredientId { get; set; }
-        public string IngredientName { get; set; }
+        public DateTime CalendarDate { get; set; }
+        public string DayOfWeek { get; set; }
         public Guid CreatedByUser { get; set; }
-        public int Quantity { get; set; }
         public Guid MealId { get; set; }
         public virtual Meal Meal { get; set; }
 
-        public MealIngredientQuantity()
+        public Calendar()
         {
             Id = Guid.NewGuid();
             DateCreated = DateTime.Now;
         }
     }
+
 }

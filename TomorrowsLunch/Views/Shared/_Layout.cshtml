@@ -20,7 +20,7 @@
 
     <!-- Page Wrapper -->
     <div id="page-wrapper">
-        
+
 
         <!-- Header -->
         <header id="header">
@@ -28,10 +28,10 @@
             {
                 <h1>@Html.ActionLink("Tomorrows Lunch", "Index", "Home")</h1>
             }
-                @if (ViewBag.ShowLogin)
-                {
-                            <h2 id="login" class="icon fa-sign-in" style="display:inline-flex">@Html.ActionLink("Prijavi se", "Login", "User")</h2>
-                }
+            @if (ViewBag.ShowLogin)
+            {
+                <h2 id="login" class="icon fa-sign-in" style="display:inline-flex">@Html.ActionLink("Prijavi se", "Login", "User")</h2>
+            }
             <nav id="nav" style="visibility:hidden">
                 <ul>
                     <li class="special">
@@ -39,7 +39,7 @@
                         <div id="menu">
                             <ul>
                                 <li class="icon fa-user" style="display:flex">@Html.ActionLink("Profil", "EditProfile", "User")</li>
-                                <li class="icon fa-calendar" style="display:flex">@Html.ActionLink("Kalendar", "Home", "Home")</li>
+                                <li class="icon fa-calendar" style="display:flex">@Html.ActionLink("Kalendar", "Calendar", "Calendar")</li>
                                 <li class="icon fa-birthday-cake" style="display:flex">@Html.ActionLink("Jela", "Meals", "Meal")</li>
                                 <li class="icon fa-lemon-o" style="display:flex">@Html.ActionLink("Sastojci", "Ingredients", "Ingredient")</li>
                                 <li class="icon fa-sticky-note-o" style="display:flex">@Html.ActionLink("Recepti", "Recipes", "Meal")</li>
@@ -52,19 +52,25 @@
         </header>
         @RenderBody()
         <!-- Footer -->
-        <footer id="footer">
-            @*<ul class="icons">
-                    <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-                    <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-                    <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-                    <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-                    <li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
-                </ul>*@
-            <ul class="copyright">
-                <li>&copy;</li>
-                <li>Author: Ivan Juric</li>
-            </ul>
-        </footer>
+        @if (ViewBag.ShowTitle)
+            {
+            <footer id="footer">
+                @*<ul class="icons">
+                        <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                        <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                        <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+                        <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+                        <li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+                    </ul>*@
+
+                <ul class="copyright">
+                    <li>&copy;</li>
+                    <li>Author: Ivan Juric</li>
+                </ul>
+
+
+            </footer>
+        }
     </div>
 </body>
 </html>
