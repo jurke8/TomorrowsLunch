@@ -6,17 +6,15 @@ using TomorrowsLunch.Models;
 
 namespace TomorrowsLunch.DummyData
 {
-    public class MealsDummy
+    public class MealIngredientQuantitiesDummy
     {
-        private static List<Meal> _instance = new List<Meal>(){
-            //new Meal {
-            //    Name="sarma",
-            //    MealIngredientQuantites =
-            //},
+        private static List<MealIngredientQuantity> _instance = new List<MealIngredientQuantity>(){
+            //new MealIngredientQuantity {
 
+            //}
         };
 
-        public static List<Meal> Data
+        public static List<MealIngredientQuantity> Data
         {
             get
             {

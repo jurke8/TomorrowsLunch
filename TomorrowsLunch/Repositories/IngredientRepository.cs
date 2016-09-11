@@ -15,7 +15,7 @@ namespace TomorrowsLunch.Repositories
             var ingredientsList = new List<Ingredient>();
             using (var db = new ApplicationDbContext())
             {
-                ingredients = db.Ingredients.Where(i => !i.Deleted).Where(i => i.CreatedByUser == currentUser).OrderByDescending(x => x.DateCreated);
+                ingredients = db.Ingredients.Where(i => !i.Deleted).Where(i => (i.CreatedByUser == currentUser || i.CreatedByUser == Guid.Empty)).OrderByDescending(x => x.DateCreated);
                 ingredientsList = ingredients.ToList();
             }
             return ingredientsList;
