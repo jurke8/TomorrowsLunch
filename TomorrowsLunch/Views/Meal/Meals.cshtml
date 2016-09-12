@@ -19,6 +19,10 @@
                         <a id="removeIngredientButton" style="display:none; padding-left:30px; padding-right:30px;" onclick="return removeIngredient()" class="button small icon fa-remove">Ukloni sastojak</a>
                     </div>
                     <br />
+                    <div class="6u$">
+                        <textarea name="recipe" id="recipe" placeholder="Unesite recept" rows="6"></textarea>
+                    </div>
+                    <br />
                     <div class="12u$">
                         <ul class="actions">
                             <li><a href="javascript:document.forms['mealCreateForm'].submit()" onclick="return validateForm()" class="button special icon fa-plus">Dodaj jelo</a></li>
@@ -55,8 +59,17 @@
                     </div>
                 </div>
             }
+        
+            
         </section>
         <section>
+            @foreach (var item in meals)
+            {
+                <div style="display:none" id="@item.Id" class="6u$">
+                    <h5>Recept za @item.Name:</h5>
+                    <pre><code>@item.Recipe</code></pre>
+                </div>
+            }
             <h4>Jela</h4>
             <div class="table-wrapper">
                 <table>
@@ -81,9 +94,9 @@
                                         </select>
                                     </div>
                                 </td>
-                                @*<td>
-                                    <a onclick="populateAndShowForm('@item.Name', '@item.Id', '@foreach (var ingredient in item.MealIngredientQuantites) {@String.Format("{{\"ingredientName\":\""); @ingredient.IngredientName; @String.Format("\",\"quantity\":\""); @ingredient.Quantity; @String.Format("\"}},");}')" class="button small icon fa-edit">Uredi</a>
-                                </td>*@
+                                <td>
+                                    <a id="@item.Id+" onclick="showRecipe('@item.Id')" class="button small icon fa-sticky-note-o">Pročitaj recept</a>
+                                </td>
                                 <td>
                                     <a href="@Url.Action("Delete", "Meal", new { id=item.Id })" class="button small icon fa-remove">Obriši</a>
                                 </td>
@@ -217,5 +230,19 @@
         mealIngredientQuantites = "{\"ingredients\": [" + mealIngredientQuantites + "]}";
         var mealIngredientQuantitesObj = JSON.parse(mealIngredientQuantites);
         console.log(mealIngredientQuantitesObj);
+    }
+    function showRecipe(mealId)
+    {
+        var x = document.getElementById(mealId);
+        var y = document.getElementById(mealId + "+");
+        if ((x.style.display == "none")) {
+            x.style.display = "block";
+            y.innerHTML="Sakrij recept";
+        }
+        else {
+            x.style.display = "none";
+            y.innerHTML="Pročitaj recept";
+
+        }
     }
 </script>

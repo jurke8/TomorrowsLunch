@@ -9,6 +9,7 @@ namespace TomorrowsLunch.Models
     {
         public virtual ICollection<MealIngredientQuantity> MealIngredientQuantites { get; set; }
         public virtual ICollection<Calendar> Calendars { get; set; }
+        public string Recipe { get; set; }
 
         public Guid CreatedByUser { get; set; }
         public Meal()

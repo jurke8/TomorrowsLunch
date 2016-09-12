@@ -82,6 +82,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -148,6 +152,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="Properties\PublishProfiles\healtyfood - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\tomorrowslunch - Web Deploy.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
@@ -181,6 +187,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="AzureMachineLearning\IngredientsClustering.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\IngredientController.cs" />
     <Compile Include="Controllers\MealController.cs" />
@@ -188,7 +195,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DummyData\IgredientsDummy.cs" />
     <Compile Include="DummyData\MealIngredientQuantitiesDummy.cs" />
-    <Compile Include="DummyData\UsersDummy.cs" />
     <Compile Include="DummyData\MealsDummy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -257,6 +263,14 @@
     <Compile Include="Migrations\201609012309107_dayofweek_added.Designer.cs">
       <DependentUpon>201609012309107_dayofweek_added.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609121527386_check.cs" />
+    <Compile Include="Migrations\201609121527386_check.Designer.cs">
+      <DependentUpon>201609121527386_check.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609121738233_recipe_added.cs" />
+    <Compile Include="Migrations\201609121738233_recipe_added.Designer.cs">
+      <DependentUpon>201609121738233_recipe_added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BaseEntity.cs" />
@@ -276,7 +290,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -361,6 +377,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609012309107_dayofweek_added.resx">
       <DependentUpon>201609012309107_dayofweek_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609121527386_check.resx">
+      <DependentUpon>201609121527386_check.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609121738233_recipe_added.resx">
+      <DependentUpon>201609121738233_recipe_added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

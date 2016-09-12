@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -13,6 +14,8 @@ namespace TomorrowsLunch.Models
         public int Fat { get; set; }
         public int Proteins { get; set; }
         public int Calories { get; set; }
+        [NotMapped]
+        public int Group { get; set; }
 
         public Ingredient()
         {

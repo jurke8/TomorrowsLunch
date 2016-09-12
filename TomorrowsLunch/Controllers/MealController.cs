@@ -27,14 +27,14 @@ namespace TomorrowsLunch.Controllers
         public ActionResult Create(FormCollection frmc)
         {
             var mealName = frmc["name"];
+            var recipe = frmc["recipe"];
+
             var ir = new IngredientRepository();
             var ingredients = ir.GetAll(UserController.currentUser.Id);
             var mealIngredients = new List<Ingredient>();
             var quanitites = new List<int>();
             var ingredientsQuantites = new List<MealIngredientQuantity>();
-            //var calendars = new List<Calendar>();
-
-            for (int i = 1; i < frmc.Count; i++)
+            for (int i = 1; i < frmc.Count-1; i++)
             {
                 if (i % 2 != 0)
                 {
@@ -63,7 +63,7 @@ namespace TomorrowsLunch.Controllers
                 Name = mealName,
                 CreatedByUser = UserController.currentUser.Id,
                 MealIngredientQuantites = ingredientsQuantites,
-                //Calendars = calendars
+                Recipe = recipe
             });
 
             return RedirectToAction("Meals");

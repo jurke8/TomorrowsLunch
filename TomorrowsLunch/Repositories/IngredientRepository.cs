@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
 using TomorrowsLunch.Models;
-
+using TomorrowsLunch.AzureMachineLearning;
+using System.Web.Script.Serialization;
 
 namespace TomorrowsLunch.Repositories
 {
@@ -15,8 +16,12 @@ namespace TomorrowsLunch.Repositories
             var ingredientsList = new List<Ingredient>();
             using (var db = new ApplicationDbContext())
             {
-                ingredients = db.Ingredients.Where(i => !i.Deleted).Where(i => (i.CreatedByUser == currentUser || i.CreatedByUser == Guid.Empty)).OrderByDescending(x => x.DateCreated);
-                ingredientsList = ingredients.ToList();
+                ingredients = db.Ingredients.Where(i => !i.Deleted).Where(i => (i.CreatedByUser == currentUser || i.CreatedByUser == Guid.Empty));
+
+                //AML
+                IngredientsClustering.Ingredients = ingredients.ToList();
+                IngredientsClustering.InvokeRequestResponseService().Wait();
+                ingredientsList = IngredientsClustering.Ingredients.OrderBy(i => i.Group).ToList();
             }
             return ingredientsList;
         }
@@ -33,4 +38,6 @@ namespace TomorrowsLunch.Repositories
             return returnValue;
         }
     }
+
+   
 }

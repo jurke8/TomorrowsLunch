@@ -12,16 +12,17 @@
                 {
                     <div>
                         <div class="6u 12u$(xsmall)">
-                            <input type="text" name="name" id="name" value="" placeholder="Ime" />
+                            <input type="text" name="name" id="name" value="" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }" placeholder="Ime" />
                         </div>
                         <br />
                         <div class="6u$ 12u$(xsmall)">
-                            <input type="password" name="pass" id="pass" value="" placeholder="Lozinka" />
+                            <input type="password" name="pass" id="pass" value="" onkeydown="if (event.keyCode == 13) { this.form.submit(); return false; }" placeholder="Lozinka" />
                         </div>
                         <br />
                         <div class="12u$">
                             <ul class="actions">
                                 <li><a href="javascript:document.forms['loginForm'].submit()" class="button special icon fa-sign-in">Prijavi se</a></li>
+
                             </ul>
                         </div>
                         <div style="color:red; font-weight:bold">@ViewBag.Message</div>
