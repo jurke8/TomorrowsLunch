@@ -9,6 +9,10 @@ namespace TomorrowsLunch.Models
     {
         public Guid IngredientId { get; set; }
         public string IngredientName { get; set; }
+        public int IngredientCarbohydrates { get; set; }
+        public int IngredientFat { get; set; }
+        public int IngredientProteins { get; set; }
+        public int IngredientCalories { get; set; }
         public Guid CreatedByUser { get; set; }
         public int Quantity { get; set; }
         public Guid MealId { get; set; }

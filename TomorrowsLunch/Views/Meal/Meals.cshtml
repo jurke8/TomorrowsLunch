@@ -77,6 +77,10 @@
                         <tr>
                             <th>Naziv jela</th>
                             <th>Sastojci</th>
+                            <th>Kalorije</th>
+                            <th>Ugljikohidrati</th>
+                            <th>Masti</th>
+                            <th>Proteini</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -89,16 +93,20 @@
                                         <select>
                                             @foreach (var mealIngredientQuantity in item.MealIngredientQuantites)
                                             {
-                                                <option disabled="disabled">@mealIngredientQuantity.IngredientName</option>
+                                                <option disabled="disabled">@mealIngredientQuantity.IngredientName  @mealIngredientQuantity.Quantity g</option>
                                             }
                                         </select>
                                     </div>
                                 </td>
+                                <td>@item.Calories</td>
+                                <td>@item.Carbohydrates</td>
+                                <td>@item.Fat</td>
+                                <td>@item.Proteins</td>
                                 <td>
-                                    <a id="@item.Id+" onclick="showRecipe('@item.Id')" class="button small icon fa-sticky-note-o">Pročitaj recept</a>
+                                    <a style="padding-left:20px;padding-right:20px" id="@item.Id+" onclick="showRecipe('@item.Id')" class="button small icon fa-sticky-note-o">Pročitaj recept</a>
                                 </td>
                                 <td>
-                                    <a href="@Url.Action("Delete", "Meal", new { id=item.Id })" class="button small icon fa-remove">Obriši</a>
+                                    <a style="padding-left:20px;padding-right:20px" href="@Url.Action("Delete", "Meal", new { id=item.Id })" class="button small icon fa-remove">Obriši</a>
                                 </td>
                             </tr>
                         }

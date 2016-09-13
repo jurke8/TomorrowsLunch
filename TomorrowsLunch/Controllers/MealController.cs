@@ -17,7 +17,6 @@ namespace TomorrowsLunch.Controllers
             ViewBag.Name = UserController.currentUser.Name;
             var ir = new IngredientRepository();
             var mr = new MealRepository();
-
             ViewBag.Meals = mr.GetAll(UserController.currentUser.Id);
             var model = ir.GetAll(UserController.currentUser.Id);
 
@@ -55,6 +54,10 @@ namespace TomorrowsLunch.Controllers
                     CreatedByUser = UserController.currentUser.Id,
                     IngredientId = mealIngredients.ElementAt(i).Id,
                     IngredientName = mealIngredients.ElementAt(i).Name,
+                    IngredientCarbohydrates = mealIngredients.ElementAt(i).Carbohydrates,
+                    IngredientFat = mealIngredients.ElementAt(i).Fat,
+                    IngredientProteins = mealIngredients.ElementAt(i).Proteins,
+                    IngredientCalories = mealIngredients.ElementAt(i).Calories,
                     Quantity = quanitites.ElementAt(i)
                 });
             }
