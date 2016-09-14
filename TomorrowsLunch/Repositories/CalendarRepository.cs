@@ -36,6 +36,24 @@ namespace TomorrowsLunch.Repositories
             }
             return calendarsList;
         }
+        public List<Calendar> GetLastTwo(Guid currentUser)
+        {
+            IQueryable<Calendar> calendars;
+            var calendarsList = new List<Calendar>();
+            using (var db = new ApplicationDbContext())
+            {
+                calendars = db.Calendars.Include(c => c.Meal).Where(c => !c.Deleted).Where(c => c.CreatedByUser == currentUser).OrderByDescending(x => x.DateCreated);
+                calendarsList = calendars.ToList();
+                if (calendarsList.Count > 2)
+                {
+                    return calendarsList.Take(2).ToList();
+                }
+                else
+                {
+                    return calendarsList;
+                }
+            }
+        }
         public Calendar GetSpecific(Guid specificCalendarId)
         {
             Calendar returnValue;

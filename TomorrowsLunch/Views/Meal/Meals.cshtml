@@ -13,7 +13,7 @@
                     <div class="6u 12u$(xsmall)">
                         <input type="text" name="name" id="name" value="" placeholder="Naziv jela" />
                         <br />
-                        <h5>Sastojci</h5>
+                        <h5>Sastojci (za 4 osobe)</h5>
                         <ul id="ingredients"></ul>
                         <a onclick="return newIngredient()" class="button small icon fa-plus">Novi sastojak</a>
                         <a id="removeIngredientButton" style="display:none; padding-left:30px; padding-right:30px;" onclick="return removeIngredient()" class="button small icon fa-remove">Ukloni sastojak</a>
@@ -70,12 +70,12 @@
                     <pre><code>@item.Recipe</code></pre>
                 </div>
             }
-            <h4>Jela</h4>
+            <h4>Jela (za 4 osobe)</h4>
             <div class="table-wrapper">
                 <table>
                     <thead>
                         <tr>
-                            <th>Naziv jela</th>
+                            <th>Naziv</th>
                             <th>Sastojci</th>
                             <th>Kalorije</th>
                             <th>Ugljikohidrati</th>

@@ -25,7 +25,7 @@ namespace TomorrowsLunch.Repositories
             var mealsList = new List<Meal>();
             using (var db = new ApplicationDbContext())
             {
-                meals = db.Meals.Include(m => m.MealIngredientQuantites).Where(m => !m.Deleted).Where(m => m.CreatedByUser == currentUser).OrderByDescending(x => x.DateCreated);
+                meals = db.Meals.Include(m => m.MealIngredientQuantites).Where(m => !m.Deleted).Where(m => m.CreatedByUser == currentUser || m.CreatedByUser == Guid.Empty).OrderByDescending(x => x.DateCreated);
                 mealsList = meals.ToList();
             }
             return mealsList;

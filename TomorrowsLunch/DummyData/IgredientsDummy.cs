@@ -17,6 +17,62 @@ namespace TomorrowsLunch.DummyData
                 Fat = 1
             },
             new Ingredient {
+                Name="riža",
+                Calories=130,
+                Carbohydrates =29,
+                Proteins = 2,
+                Fat =0
+            },
+            new Ingredient {
+                Name="peršin",
+                Calories=20,
+                Carbohydrates =5,
+                Proteins = 5,
+                Fat =0
+            },
+            new Ingredient {
+                Name="tjestenina",
+                Calories=370,
+                Carbohydrates =75,
+                Proteins = 13,
+                Fat = 1
+            },
+             new Ingredient {
+                Name="kiselo vrhnje (20%mm)",
+                Calories=200,
+                Carbohydrates =5,
+                Proteins = 18,
+                Fat = 4
+            },
+            new Ingredient {
+                Name="kore za pitu",
+                Calories=290,
+                Carbohydrates =50,
+                Proteins = 1,
+                Fat = 5
+            },
+            new Ingredient {
+                Name="slanina",
+                Calories=500,
+                Carbohydrates =0,
+                Proteins = 14,
+                Fat = 50
+            },
+            new Ingredient {
+                Name="maslac",
+                Calories=751,
+                Carbohydrates =0,
+                Proteins = 1,
+                Fat = 50
+            },
+            new Ingredient {
+                Name="šampinjoni",
+                Calories=16,
+                Carbohydrates =1,
+                Proteins = 2,
+                Fat = 0
+            },
+            new Ingredient {
                 Name="mlijeko (3.2% masti)",
                 Calories=66,
                 Carbohydrates =5,
@@ -175,6 +231,13 @@ namespace TomorrowsLunch.DummyData
                 Calories=10,
                 Carbohydrates =2,
                 Proteins = 0,
+                Fat = 0
+            },
+            new Ingredient {
+                Name="kiseli kupus",
+                Calories=26,
+                Carbohydrates =4,
+                Proteins = 2,
                 Fat = 0
             },
             new Ingredient {
@@ -379,6 +442,34 @@ namespace TomorrowsLunch.DummyData
                 Carbohydrates = 0,
                 Proteins = 16,
                 Fat = 24
+            },
+            new Ingredient {
+                Name="ananas",
+                Calories= 48,
+                Carbohydrates = 13,
+                Proteins = 0,
+                Fat = 0
+            },
+             new Ingredient {
+                Name="majoneza",
+                Calories= 710,
+                Carbohydrates = 2,
+                Proteins = 1,
+                Fat = 77
+            },
+            new Ingredient {
+                Name="kiwi",
+                Calories= 40,
+                Carbohydrates = 10,
+                Proteins = 0,
+                Fat = 0
+            },
+            new Ingredient {
+                Name="junetina",
+                Calories= 272,
+                Carbohydrates = 0,
+                Proteins = 17,
+                Fat = 23
             },
             new Ingredient {
                 Name="šunka",

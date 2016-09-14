@@ -52,11 +52,11 @@ namespace TomorrowsLunch.Models
             {
                 switch (Activity)
                 {
-                    case 1: return (Convert.ToDouble(BMR) * 1.2).ToString("#.##"); ;
-                    case 2: return (Convert.ToDouble(BMR) * 1.375).ToString("#.##"); ;
-                    case 3: return (Convert.ToDouble(BMR) * 1.55).ToString("#.##"); ;
-                    case 4: return (Convert.ToDouble(BMR) * 1.725).ToString("#.##"); ;
-                    case 5: return (Convert.ToDouble(BMR) * 1.9).ToString("#.##"); ;
+                    case 1: return (Convert.ToDouble(BMR) * 1.2).ToString("#"); ;
+                    case 2: return (Convert.ToDouble(BMR) * 1.375).ToString("#"); ;
+                    case 3: return (Convert.ToDouble(BMR) * 1.55).ToString("#"); ;
+                    case 4: return (Convert.ToDouble(BMR) * 1.725).ToString("#"); ;
+                    case 5: return (Convert.ToDouble(BMR) * 1.9).ToString("#"); ;
 
                     default:
                         return BMR;

@@ -17,7 +17,7 @@ namespace TomorrowsLunch.Controllers
             ViewBag.Name = UserController.currentUser.Name;
             var ir = new IngredientRepository();
             var mr = new MealRepository();
-            ViewBag.Meals = mr.GetAll(UserController.currentUser.Id);
+            ViewBag.Meals = mr.GetAll(UserController.currentUser.Id).OrderBy(m => m.Calories);
             var model = ir.GetAll(UserController.currentUser.Id);
 
             return View(model);

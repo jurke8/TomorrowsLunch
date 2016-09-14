@@ -62,10 +62,10 @@ namespace TomorrowsLunch.AzureMachineLearning
                     {
                     }
                 };
-                const string apiKey = "z873D5igVHCU411oqGaZcovmpcyqv4h+pl8A1h3WUVDw1dzDjPXqcftuh+wzkv1+F/TuVWqp3X9FKpWDVfkXVA=="; // Replace this with the API key for the web service
+                const string apiKey = "MuCzSFQEeSIRrh1GCkC96ctDraZzz6LaOJmLtdgiW65rOw5TwNyk6gh+S8wYWXiUs/yOg+itiOXoqd8xgvKwjw=="; // Replace this with the API key for the web service
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
 
-                client.BaseAddress = new Uri("https://ussouthcentral.services.azureml.net/workspaces/b18ad9f1009f4191837c680d297f1224/services/da838bd9d9f141688d00090c01da8202/execute?api-version=2.0&details=true");
+                client.BaseAddress = new Uri("https://ussouthcentral.services.azureml.net/workspaces/b18ad9f1009f4191837c680d297f1224/services/e022f842d5b04a7d97f4949c02edaf1f/execute?api-version=2.0&details=true");
 
                 // WARNING: The 'await' statement below can result in a deadlock if you are calling this code from the UI thread of an ASP.Net application.
                 // One way to address this would be to call ConfigureAwait(false) so that the execution does not attempt to resume on the original context.
@@ -85,10 +85,7 @@ namespace TomorrowsLunch.AzureMachineLearning
                     result = result.Substring(46, result.Length - 46);
 
                     Value groupedIngredients = new JavaScriptSerializer().Deserialize<Value>(result);
-                    //foreach (var item in groupedIngredients.Values)
-                    //{
-                    //    Ingredients.Where(i => i.Name.Equals(item[3])).Select(i => i.Group = Convert.ToInt32(item[5]));
-                    //};
+
                     for (int i = 0; i < groupedIngredients.Values.Count; i++)
                     {
                         Ingredients.Where(ing => ing.Name.Equals(groupedIngredients.Values.ElementAt(i).ElementAt(3))).FirstOrDefault().Group = Convert.ToInt32(groupedIngredients.Values.ElementAt(i).ElementAt(5));
