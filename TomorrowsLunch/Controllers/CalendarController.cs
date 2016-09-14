@@ -20,7 +20,7 @@ namespace TomorrowsLunch.Controllers
             ViewBag.Name = user.Name;
             var cr = new CalendarRepository();
             var mr = new MealRepository();
-            var allMeals = mr.GetAll(user.Id);
+            var allMeals = mr.GetAll(user.Id).OrderBy(m => m.Calories).ToList();
             ViewBag.Meals = allMeals;
             var model = cr.GetAll(user.Id).OrderByDescending(c => c.CalendarDate);
             var lastCalendars = cr.GetLastTwo(user.Id);
@@ -32,7 +32,7 @@ namespace TomorrowsLunch.Controllers
             {
                 suggestions.Add(allMeals.Where(m => m.Calories == item).FirstOrDefault());
             }
-            if (lastCalendars.Count != 0)
+            if (lastCalendars.Count > 0 && allMeals.Count > 1)
             {
                 var toRemove = new List<Meal>();
                 foreach (var item in suggestions)
@@ -46,6 +46,18 @@ namespace TomorrowsLunch.Controllers
                 {
                     suggestions.Remove(item);
                 }
+            }
+            if (Convert.ToDecimal(user.BMI) < 19)
+            {
+                ViewBag.BMI = "Vaša težina je ispod granice normale";
+            }
+            else if (Convert.ToDecimal(user.BMI) >= 19 && Convert.ToDecimal(user.BMI) <= 25)
+            {
+                ViewBag.BMI = "Vaša težina je u granicama normale";
+            }
+            else
+            {
+                ViewBag.BMI = "Vaša težina je iznad granica normale";
             }
             ViewBag.Suggestions = suggestions;
             return View(model);
@@ -88,6 +100,7 @@ namespace TomorrowsLunch.Controllers
             else if (BMI >=19 && BMI <= 25)
             {
                 mealsCalories.Add(userCalories);
+                mealsCalories.Sort();
                 var indexOfUserCalories = mealsCalories.IndexOf(userCalories);
                 var returnList = new List<int>();
                 if (indexOfUserCalories > 1)

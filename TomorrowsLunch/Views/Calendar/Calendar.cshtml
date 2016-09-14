@@ -7,12 +7,14 @@
 
 <section class="wrapper style5">
     <div class="inner">
-        Sugestije:
+        <h6>@ViewBag.BMI</h6>
         <br />
+        <h6>Predložena jela:</h6>
         @foreach (var item in ViewBag.Suggestions)
         {
-            @item.Name
+            @item.Name <br />
         }
+        <br />
         <section id="createSection">
             @using (Html.BeginForm("Create", "Calendar", FormMethod.Post, new { id = "calendarCreateForm" }))
             {
