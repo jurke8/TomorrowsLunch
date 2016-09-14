@@ -9,11 +9,6 @@ namespace TomorrowsLunch.DummyData
     public class MealsDummy
     {
         private static List<Meal> _instance = new List<Meal>(){
-            //new Meal {
-            //    Name="sarma",
-            //    MealIngredientQuantites =
-            //},
-
         };
 
         public static List<Meal> Data

@@ -18,23 +18,6 @@ namespace TomorrowsLunch.Controllers
             ViewBag.ShowLogin = true;
             return View();
         }
-        public ActionResult Generic()
-        {
-            ViewBag.ShowLogin = false;
-            ViewBag.ShowTitle = false;
-
-            return View();
-        }
-
-        public ActionResult Elements()
-        {
-            ViewBag.ShowLogin = false;
-            ViewBag.ShowTitle = false;
-
-            //ViewBag.Name = UserController.currentUser.Name;
-            return View();
-        }
-
         public ActionResult Home(string message)
         {
             ViewBag.ShowLogin = false;
@@ -45,7 +28,5 @@ namespace TomorrowsLunch.Controllers
 
             return View();
         }
-        
-        
     }
 }
